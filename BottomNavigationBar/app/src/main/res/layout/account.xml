@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/uploadBtn"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/accountImage"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp" />
@@ -29,7 +29,7 @@
         android:gravity="center"
         app:srcCompat="@drawable/ic_account"
         android:layout_marginTop="48dp"
-        android:id="@+id/imageView"
+        android:id="@+id/accountImage"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

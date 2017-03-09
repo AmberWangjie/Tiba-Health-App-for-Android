@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
@@ -22,7 +23,9 @@ public class TrainActivity extends Activity {
     Button btnStart,btnStop;
     Bundle bundle;
     Integer id;
+    ImageView trainImage;
     TextView textViewTime;
+    int[] images = {R.drawable.a08, R.drawable.a04, R.drawable.a06};
 
     public final static String MESSAGE_ID = "com.example.zhanghaochong.bottomnavigationbar.id";
     public final static String CONSTANT_TASK = "com.example.zhanghaochong.bottomnavigationbar.task";
@@ -34,6 +37,7 @@ public class TrainActivity extends Activity {
         bundle = getIntent().getExtras();
         id = intent.getIntExtra(MESSAGE_ID, 0);
 
+
         if(bundle != null){
             mTasks = bundle.getParcelableArrayList(CONSTANT_TASK);
         }
@@ -44,7 +48,10 @@ public class TrainActivity extends Activity {
         btnStart = (Button) findViewById(R.id.btnStart);
         btnStop = (Button) findViewById(R.id.btnStop);
         textViewTime = (TextView) findViewById(R.id.textViewTime);
+        trainImage = (ImageView) findViewById(R.id.trainImage);
+
         long time = Integer.parseInt(message);
+        trainImage.setImageResource(images[id]);
         FormatConverter(time);
 
         final CounterClass timer = new CounterClass(time,1000);

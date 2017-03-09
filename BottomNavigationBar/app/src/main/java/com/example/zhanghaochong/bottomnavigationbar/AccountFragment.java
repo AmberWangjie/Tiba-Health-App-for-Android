@@ -31,7 +31,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.account, container, false);
-        imageToUpload = (ImageView) v.findViewById(R.id.imageView);
+        imageToUpload = (ImageView) v.findViewById(R.id.accountImage);
 
         uploadBtn = (Button) v.findViewById(R.id.uploadBtn);
 
@@ -44,7 +44,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v){
         switch (v.getId()) {
-            case R.id.imageView:
+            case R.id.accountImage:
                /* final ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
                 if(zoomOut) {
                     Toast.makeText(v.getContext(), "NORMAL SIZE!", Toast.LENGTH_LONG).show();
