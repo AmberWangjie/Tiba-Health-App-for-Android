@@ -40,6 +40,9 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     };
 
+
+
+
     @Override
     protected  void onDestroy() {
         Log.d(TAG,"onDestroy: called.");
