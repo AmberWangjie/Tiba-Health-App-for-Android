@@ -40,7 +40,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".BluetoothActivity"></activity>
+        <activity android:name=".BluetoothActivity">
+            <intent-filter>
+                <action android:name="com.example.zhanghaochong.bottomnavigationbar.BluetoothActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

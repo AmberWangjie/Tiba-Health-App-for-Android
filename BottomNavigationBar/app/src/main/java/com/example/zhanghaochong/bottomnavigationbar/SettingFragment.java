@@ -1,6 +1,7 @@
 package com.example.zhanghaochong.bottomnavigationbar;
 
-import android.app.Fragment;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import android.widget.Button;
 
 public class SettingFragment extends Fragment {
 
-    Button btBtn;
+    Button btSet;
 
     @Nullable
     @Override
@@ -24,10 +25,18 @@ public class SettingFragment extends Fragment {
 
         onClickButtonListener(v);
 
+
         return v;
     }
 
     public void onClickButtonListener(View v) {
-
+        btSet = (Button) v.findViewById(R.id.btSet);
+        btSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.BluetoothActivity");
+                startActivity(intent);
+            }
+        });
     }
 }
