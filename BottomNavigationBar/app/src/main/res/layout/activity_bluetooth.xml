@@ -20,5 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnONOFF" />
+
+        <Button
+            android:text="Enable Discoverable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnEnableDisable_Discoverable"
+            android:id="@+id/btnDiscoverable_on_off" />
+
+        <TextView
+            android:text="First, turn on the buletooth, then turn on the discoverable."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
     </LinearLayout>
 </RelativeLayout>
