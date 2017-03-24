@@ -17,4 +17,9 @@
         android:icon="@drawable/ic_account"
         android:title="Account"></item>
 
+    <item android:id="@+id/BottombaritemFive"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting"></item>
+
+
 </menu>

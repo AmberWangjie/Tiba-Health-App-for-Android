@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
                     AccountFragment f = new AccountFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                 }
+                else if(id == R.id.BottombaritemFive) {
+                    SettingFragment f = new SettingFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                }
             }
 
             @Override
