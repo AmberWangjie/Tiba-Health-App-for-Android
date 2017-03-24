@@ -1,21 +1,22 @@
 <resources>
-<string name="app_name">BottomNavigationBar</string>
-<string name="title_activity_description">DescriptionActivity</string>
-<string name="user_name">User Name:</string>
-<string name="user_input">Information</string>
-<string name="upload">Upload your photo</string>
-<string name="user_email">Email:</string>
-<string name="user_phone">Cellular:</string>
+    <string name="app_name">BottomNavigationBar</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="user_name">User Name:</string>
+    <string name="user_input">Information</string>
+    <string name="upload">Upload your photo</string>
+    <string name="user_email">Email:</string>
+    <string name="user_phone">Cellular:</string>
 
-<string name="train_label">Training</string>
-<string name="ins_label">Instruction</string>
-<string name="main_label">Tiba Health</string>
-<string name="app_name_email">Contact My PT</string>
-<string name="email_address">yourPT@mail.com</string>
-<string name="send_to">How do you feel about this exercise? Your PT cares about your feedback!</string>
-<string name="logsend">Finished sending</string>
-<string name="sendbtn">send</string>
-<string name="cancbtn">cancel</string>
-<string name="email_edit">Edit your feedback here</string>
+    <string name="train_label">Training</string>
+    <string name="ins_label">Instruction</string>
+    <string name="main_label">Tiba Health</string>
+    <string name="app_name_email">Contact My PT</string>
+    <string name="email_address">yourPT@mail.com</string>
+    <string name="send_to">How do you feel about this exercise? Your PT cares about your feedback!</string>
+    <string name="logsend">Finished sending</string>
+    <string name="sendbtn">send</string>
+    <string name="cancbtn">cancel</string>
+    <string name="email_edit">Edit your feedback here</string>
+    <string name="title_activity_bluetooth">BluetoothActivity</string>
 
 </resources>
