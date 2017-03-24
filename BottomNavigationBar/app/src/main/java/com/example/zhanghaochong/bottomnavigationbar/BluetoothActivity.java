@@ -15,7 +15,9 @@ public class BluetoothActivity extends AppCompatActivity {
     private static final String TAG = "BluetoothActivity";
 
     BluetoothAdapter mBluetoothAdapter;
+    Button btnEnableDisable_Discoverable;
 
+    //Broadcase recever to recever status of bluetooth on and off.
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -24,7 +26,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
                 switch(state) {
                     case BluetoothAdapter.STATE_OFF:
-                        Log.d(TAG,"onReveive: STATE OFF");
+                        Log.d(TAG,"mBroadcastReceiver1: STATE OFF");
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
                         Log.d(TAG,"mBroadcastReceiver1: STATE TURNING OFF");
@@ -34,6 +36,34 @@ public class BluetoothActivity extends AppCompatActivity {
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
                         Log.d(TAG,"mBroadcastReceiver1: STATE TURNING ON");
+                        break;
+                }
+            }
+        }
+    };
+
+// broadcast receiver 2 to receive status of discoverability of the phone.
+    private final BroadcastReceiver mBroadcastReceiver2 = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)) {
+                int mode = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE, mBluetoothAdapter.ERROR);
+
+                switch(mode) {
+                    case BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE:
+                        Log.d(TAG,"mBroadcastReceiver2: Discoverability Enabled.");
+                        break;
+                    case BluetoothAdapter.SCAN_MODE_CONNECTABLE:
+                        Log.d(TAG,"mBroadcastReceiver2: Discoverability Disabled. Able to receive connections.");
+                        break;
+                    case BluetoothAdapter.SCAN_MODE_NONE:
+                        Log.d(TAG,"mBroadcastReceiver2: Discoverability Disabled. Not able to receive connections.");
+                        break;
+                    case BluetoothAdapter.STATE_CONNECTING:
+                        Log.d(TAG,"mBroadcastReceiver2: Connecting...");
+                        break;
+                    case BluetoothAdapter.STATE_CONNECTED:
+                        Log.d(TAG,"mBroadcastReceiver2: Connected.");
                         break;
                 }
             }
@@ -56,6 +86,7 @@ public class BluetoothActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bluetooth);
 
         Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
+        btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -68,7 +99,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
     }
-
+//turn on/off the blue tooth
     public void enableDisableBT() {
         if(mBluetoothAdapter==null) {
             Log.d(TAG,"enableDisableBT: Dose not have BT capabilities.");
@@ -86,5 +117,15 @@ public class BluetoothActivity extends AppCompatActivity {
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
             registerReceiver(mBroadcastReceiver1,BTIntent);
         }
+    }
+//turn on/off the discoverability
+    public void btnEnableDisable_Discoverable(View view) {
+        Log.d(TAG,"btnEnableDisable_Discoverable: Making device discoverable for 600 seconds.");
+        Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION,600);
+        startActivity(discoverableIntent);
+
+        IntentFilter intentFilter = new IntentFilter(mBluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+        registerReceiver(mBroadcastReceiver2,intentFilter);
     }
 }
