@@ -223,8 +223,6 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-
     }
 
 
