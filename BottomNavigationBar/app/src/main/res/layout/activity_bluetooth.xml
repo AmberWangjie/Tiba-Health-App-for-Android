@@ -29,7 +29,7 @@
             android:id="@+id/btnDiscoverable_on_off" />
 
         <TextView
-            android:text="First, turn on the buletooth, then turn on the discoverable."
+            android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" />
@@ -48,5 +48,28 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:id="@+id/lvNewDevices"/>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnFindUnpairedDevices"
+            android:id="@+id/btnStartConnection"
+            android:text="Start Connection"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Text Here"
+            android:layout_below="@+id/lvNewDevices"
+            android:id="@+id/editText"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEND"
+            android:id="@+id/btnSend"
+            android:layout_toRightOf="@+id/editText"
+            android:layout_below="@+id/lvNewDevices"/>
+
     </LinearLayout>
 </RelativeLayout>
