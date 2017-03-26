@@ -28,11 +28,11 @@
             android:onClick="btnEnableDisable_Discoverable"
             android:id="@+id/btnDiscoverable_on_off" />
 
-        <TextView
-            android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
+        <!--<TextView-->
+            <!--android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/textView2" />-->
 
 
         <Button
