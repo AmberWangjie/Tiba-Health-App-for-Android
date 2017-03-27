@@ -16,6 +16,7 @@ import android.widget.Button;
 public class SettingFragment extends Fragment {
 
     Button btSet;
+    Button localDB;
 
     @Nullable
     @Override
@@ -38,5 +39,14 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        localDB = (Button) v.findViewById(R.id.localDB);
+        localDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.LocalDBActivity");
+                startActivity(intent);
+            }
+        });
+
     }
 }
