@@ -9,4 +9,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/btSet"
         android:layout_marginTop="200dp" />
+
+    <Button
+        android:text="Local Database setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/localDB"
+        android:paddingRight="50dp" />
 </LinearLayout>
