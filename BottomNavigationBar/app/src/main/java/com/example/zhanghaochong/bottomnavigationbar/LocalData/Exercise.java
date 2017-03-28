@@ -11,6 +11,7 @@ public class Exercise extends DataSupport{
     private String name;
     private String description;
     private String code;
+    private int clientId;
 
     public int getClientId() {
         return clientId;
@@ -20,7 +21,7 @@ public class Exercise extends DataSupport{
         this.clientId = clientId;
     }
 
-    private int clientId;
+
 
     public int getId() {
         return id;
