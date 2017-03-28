@@ -5,20 +5,38 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.LocalData.User;
+import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapter;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocalDBActivity extends AppCompatActivity {
+
+
+    private Firebase mRef;
+    private ArrayList<Task> mTasks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_db);
+
+
+        mRef = new Firebase("https://tibaapplication.firebaseio.com/");
+
+        retrieveData();
 
         Button createDatabase = (Button) findViewById(R.id.create_database);
         createDatabase.setOnClickListener(new View.OnClickListener() {
@@ -34,12 +52,14 @@ public class LocalDBActivity extends AppCompatActivity {
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Exercise exercise = new Exercise();
-                exercise.setName("plank");
-                exercise.setDescription("plank,plank");
-                exercise.setTime("30");
-                exercise.setCode("1-9838677328-#^$%@45");
-                exercise.save();
+                for(Task task:mTasks) {
+                    Exercise exercise = new Exercise();
+                    exercise.setName(task.getName());
+                    exercise.setDescription(task.getDescription());
+                    exercise.setTime(task.getTime());
+                    //exercise.setCode(task.getCode());
+                    exercise.save();
+                }
             }
         });
 
@@ -61,7 +81,7 @@ public class LocalDBActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataSupport.deleteAll(Exercise.class, "time < ?", "5");
+                DataSupport.deleteAll(Exercise.class);
             }
         });
 
@@ -80,6 +100,49 @@ public class LocalDBActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void retrieveData(){
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    private void getUpdates(DataSnapshot ds) {
+        mTasks.clear();
+
+        for(DataSnapshot data : ds.getChildren()) {
+            Task t = new Task();
+            t.setName(data.getValue(Task.class).getName());
+            t.setDescription(data.getValue(Task.class).getDescription());
+            t.setTime(data.getValue(Task.class).getTime());
+            t.setId(data.getValue(Task.class).getId());
+
+            mTasks.add(t);
+        }
     }
 
 

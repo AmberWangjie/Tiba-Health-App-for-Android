@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firebase.client.utilities.PushIdGenerator;
 
+
 /**
  * Created by zhanghaochong on 17/3/6.
  */
