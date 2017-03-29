@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class CareplanFragment extends ListFragment{
     private ListView myView;
     private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
     private PlanAdapter adapter;
+    private DonutProgress dp;
 
     @Nullable
     @Override
@@ -45,6 +49,10 @@ public class CareplanFragment extends ListFragment{
         Firebase.setAndroidContext(getActivity());
         mRef = new Firebase("https://tibaapplication.firebaseio.com/");
 
+        dp = (DonutProgress)v.findViewById(R.id.donutProgress);
+        //hard coded progress
+        dp.setProgress(20);
+
         retrieveData();
 
         return v;
@@ -52,7 +60,7 @@ public class CareplanFragment extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
-        TextView editText = (TextView)v.findViewById(R.id.textView);
+        TextView editText = (TextView)v.findViewById(R.id.exerciseName);
         String myPlan = String.format("%s\n%s", mTasks.get(position).getName(), mTasks.get(position).getDescription());
 
         editText.setText(myPlan);

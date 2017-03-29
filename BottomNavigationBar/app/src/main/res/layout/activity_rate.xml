@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.zhanghaochong.bottomnavigationbar.rateActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:layout_width="236dp"
+        android:layout_height="236dp"
+        app:srcCompat="@drawable/girl"
+        android:id="@+id/girl"
+        android:layout_below="@+id/workOut"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feel"
+        android:text="@string/how_feel"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/girl"
+        android:layout_marginTop="12dp"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/bb_darkBackgroundColor"
+        android:textStyle="normal|bold" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_5"
+        android:layout_below="@+id/feel"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/imageButton2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_1"
+        android:layout_below="@id/feel"
+        android:id="@+id/imageButton3"
+        android:layout_toRightOf="@id/imageButton2"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_alignRight="@+id/imageButton7"
+        android:layout_alignEnd="@+id/imageButton7" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_3"
+        android:layout_below="@id/feel"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageButton4"
+        android:layout_toRightOf="@id/imageButton3"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageButton3"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_2"
+        android:layout_alignBottom="@+id/imageButton4"
+        android:layout_toRightOf="@+id/imageButton4"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/imageButton4"
+        android:id="@+id/imageButton5" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_5"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imageButton6"
+        android:layout_below="@+id/imageButton2"
+        android:layout_alignLeft="@+id/imageButton2"
+        android:layout_alignStart="@+id/imageButton2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_1"
+        android:id="@+id/imageButton7"
+        android:layout_alignTop="@+id/imageButton6"
+        android:layout_toRightOf="@+id/imageButton6"
+        android:layout_toEndOf="@+id/imageButton6"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_3"
+        android:id="@+id/imageButton8"
+        android:layout_alignTop="@+id/imageButton7"
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_alignStart="@+id/imageButton4" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_2"
+        android:id="@+id/imageButton9"
+        android:layout_alignTop="@+id/imageButton8"
+        android:layout_alignLeft="@+id/imageButton5"
+        android:layout_alignStart="@+id/imageButton5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/any_pain"
+        android:text="@string/how_pain"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_below="@+id/imageButton2"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/bb_darkBackgroundColor"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:gravity="center"
+        android:id="@+id/workOut"
+        android:text="@string/Greatwork"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="36sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="normal|bold" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_4"
+        android:id="@+id/imageButton10"
+        android:layout_alignTop="@+id/imageButton5"
+        android:layout_toRightOf="@+id/imageButton5"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/imageButton5" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@mipmap/smile_4"
+        android:id="@+id/imageButton11"
+        android:layout_below="@+id/any_pain"
+        android:layout_alignLeft="@+id/imageButton10"
+        android:layout_alignStart="@+id/imageButton10"
+        android:layout_alignTop="@+id/imageButton6"/>
+
+    <Button
+        android:text="@string/rate_btn"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/rate_finish"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

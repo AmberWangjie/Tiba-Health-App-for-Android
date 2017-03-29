@@ -8,8 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import com.firebase.client.FirebaseError;
 
 import com.example.zhanghaochong.bottomnavigationbar.Recycler.*;
 import com.firebase.client.authentication.Constants;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class WorkoutFragment extends Fragment {
     private Button startBtn;
     private RecyclerView mRecyclerView;
     private MyAdapter adapter;
+    private DonutProgress dp;
     public final static String MESSAGE_ID = "com.example.zhanghaochong.bottomnavigationbar.id";
     public final static String CONSTANT_TASK = "com.example.zhanghaochong.bottomnavigationbar.task";
 
@@ -49,6 +53,10 @@ public class WorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //inflate the fragment layout file
         View v = inflater.inflate(R.layout.workout, container, false);
+
+        dp = (DonutProgress)v.findViewById(R.id.donutProgress);
+        //hard coded progress
+        dp.setProgress(80);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerID);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -66,34 +74,34 @@ public class WorkoutFragment extends Fragment {
         /*final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,mTasks);
         mListView.setAdapter(arrayAdapter);*/
 
-        private void retrieveData(){
-            mRef.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    getUpdates(dataSnapshot);
-                }
+    private void retrieveData(){
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    getUpdates(dataSnapshot);
-                }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                }
+            }
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
 
-                }
-            });
-        }
+            }
+        });
+    }
 
     private void getUpdates(DataSnapshot ds) {
         mTasks.clear();

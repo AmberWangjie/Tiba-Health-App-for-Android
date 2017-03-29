@@ -1,23 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/exerciseView"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="60dp"
+    android:paddingBottom="30dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Summary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/ic_timer"
+        android:layout_below="@+id/summary"
+        android:layout_marginTop="10dp"
+        android:id="@+id/timer1"
+        />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/ic_total_exercises"
+        android:id="@+id/totoal_exercises"
+        android:layout_below="@+id/summary"
+        android:layout_toRightOf="@+id/timer1"
+        android:layout_alignTop="@+id/timer1"
+        android:layout_marginLeft="65dp" />
+
+    <TextView
+        android:id="@+id/timerDescp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 min"
+        android:layout_alignLeft="@+id/timer1"
+        android:layout_marginLeft="13dp"
+        android:layout_below="@+id/timer1" />
+
+    <TextView
+        android:id="@+id/exercDescp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 exercises"
+        android:layout_alignLeft="@+id/totoal_exercises"
+        android:layout_below="@+id/totoal_exercises" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/donutProgress"
+        android:layout_alignBottom="@+id/exercDescp"
+        android:layout_toRightOf="@+id/exercDescp"
+        android:layout_marginLeft="40dp"/>
+
+    <include layout="@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id = "@+id/exerciseView"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/timerDescp"
+        custom:donut_progress="50"
+        />
 
-        <include layout="@layout/content_main" />
-
-    </LinearLayout>
 
 
 </RelativeLayout>

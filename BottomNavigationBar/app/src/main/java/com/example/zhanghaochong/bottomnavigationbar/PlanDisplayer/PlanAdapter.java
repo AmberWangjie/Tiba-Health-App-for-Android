@@ -48,7 +48,7 @@ public class PlanAdapter extends ArrayAdapter<Task> {
         }
 
         PlanHolder holder = new PlanHolder();
-        holder.text = (TextView) convertView.findViewById(R.id.textView);
+        holder.text = (TextView) convertView.findViewById(R.id.exerciseName);
         holder.img = (ImageView) convertView.findViewById(R.id.planImage);
 
         holder.text.setText(plans.get(position).getName());

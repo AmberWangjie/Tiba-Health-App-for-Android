@@ -5,15 +5,21 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
+    <TextView
+        android:id="@+id/exercNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Exercise 1"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:srcCompat="@mipmap/a01"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/exercNum"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
         android:layout_marginTop="10dp"
         android:id="@+id/planImage" />
 
@@ -21,9 +27,27 @@
         android:text="Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/planImage"
+        android:layout_alignTop="@+id/planImage"
         android:layout_marginLeft="27dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView" />
+        android:id="@+id/exerciseName" />
+
+    <ImageView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_timer"
+        android:layout_below="@+id/planImage"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/exercTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 min"
+        android:gravity="center"
+        android:layout_below="@+id/planImage"
+        android:layout_toRightOf="@+id/timer"
+        android:layout_alignBottom="@+id/timer"/>
+
 </RelativeLayout>

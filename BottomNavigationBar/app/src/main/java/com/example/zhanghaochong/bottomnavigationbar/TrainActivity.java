@@ -85,9 +85,13 @@ public class TrainActivity extends Activity {
             textViewTime.setText("Done!");
             id += 1;
             if(id >= 3){
-                Intent Homeintent = new Intent(TrainActivity.this, MainActivity.class);
+                /*Intent Homeintent = new Intent(TrainActivity.this, MainActivity.class);
                 Homeintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(Homeintent);
+                startActivity(Homeintent);*/
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.rateActivity");
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }else {
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.DescriptionActivity");
                 intent.putExtras(bundle);

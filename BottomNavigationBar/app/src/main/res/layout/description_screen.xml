@@ -37,6 +37,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnGo"
         android:layout_below="@+id/textViewDes"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
 
 </android.widget.RelativeLayout>

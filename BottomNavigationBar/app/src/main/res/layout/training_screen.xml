@@ -12,17 +12,14 @@
 
         android:id="@+id/trainImage" />
 
-    <Button
-        android:text="Start"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnStart" />
-
-    <Button
-        android:text="Stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnStop" />
+        android:layout_marginLeft="10dp"
+        android:text="Time left"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <TextView
         android:text="TextView"
@@ -31,7 +28,29 @@
         android:layout_gravity="center_horizontal"
         android:textSize="40dp"
         android:textStyle="bold"
-        android:textColor="#616161"
+        android:textColor="#000000"
         android:id="@+id/textViewTime" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStart"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+    <Button
+        android:text="Stop"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStop"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
 
 </LinearLayout>
