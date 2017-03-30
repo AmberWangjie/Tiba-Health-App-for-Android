@@ -21,13 +21,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Adapter.PlanAdapter;
+import com.example.zhanghaochong.bottomnavigationbar.Adapter.TaskAdapter;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.*;
 import com.firebase.client.authentication.Constants;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 
@@ -42,8 +43,8 @@ public class WorkoutFragment extends Fragment {
     private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
     private Button startBtn;
-    private RecyclerView mRecyclerView;
-    private MyAdapter adapter;
+    private ListView myView;
+    private TaskAdapter adapter;
     private DonutProgress dp;
     public final static String MESSAGE_ID = "com.example.zhanghaochong.bottomnavigationbar.id";
     public final static String CONSTANT_TASK = "com.example.zhanghaochong.bottomnavigationbar.task";
@@ -58,8 +59,7 @@ public class WorkoutFragment extends Fragment {
         //hard coded progress
         dp.setProgress(80);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerID);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        myView = (ListView)v.findViewById(android.R.id.list);
 
         Firebase.setAndroidContext(getActivity());
         mRef = new Firebase("https://tibaapplication.firebaseio.com/");
@@ -118,8 +118,8 @@ public class WorkoutFragment extends Fragment {
 
         if(mTasks.size() > 0){
             //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
-            adapter = new MyAdapter(getActivity(),mTasks);
-            mRecyclerView.setAdapter(adapter);
+            adapter = new TaskAdapter(getActivity(),mTasks);
+            myView.setAdapter(adapter);
         }else{
             Toast.makeText(getActivity(), "No data", Toast.LENGTH_SHORT).show();
         }

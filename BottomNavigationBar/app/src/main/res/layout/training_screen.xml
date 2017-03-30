@@ -42,7 +42,7 @@
         android:textStyle="bold"/>
 
     <Button
-        android:text="Stop"
+        android:text="End workout"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnStop"
