@@ -48,7 +48,7 @@ public class EmailFragment extends Fragment {
         cancelButton = (Button) v.findViewById(R.id.cancelButton);
         sendButton = (Button) v.findViewById(R.id.sendButton);
         //emailAddress = (EditText) v.findViewById(R.id.email_addr);
-        emailContent = (EditText) v.findViewById(R.id.email_content);
+        emailContent = (EditText) v.findViewById(R.id.email_address);
 
     }
 
