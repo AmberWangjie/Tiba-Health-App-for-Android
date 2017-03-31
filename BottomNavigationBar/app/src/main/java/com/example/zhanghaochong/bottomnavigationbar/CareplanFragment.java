@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.Adapter.PlanAdapter;
 import com.firebase.client.ChildEventListener;
@@ -28,8 +29,9 @@ public class CareplanFragment extends ListFragment{
 
     private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
+    ArrayList<Exercise> mExercise = new ArrayList<>();
     private ListView myView;
-    private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
+    //private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
     private PlanAdapter adapter;
     private DonutProgress dp;
 
@@ -101,9 +103,18 @@ public class CareplanFragment extends ListFragment{
 
             mTasks.add(t);
         }
+        Exercise e = new Exercise();
+        e.setExerciseName("Strength and stability");
+        e.setExerciseBody("Upper body");
+        e.setExerciseDate("3/29");
+        e.setExerciseDuration("3 min");
+        e.setmTask(mTasks);
+        e.setTaskNum("3");
+        mExercise.add(e);
+
 
         if(mTasks.size() > 0){
-            adapter = new PlanAdapter(getActivity(),mTasks, images);
+            adapter = new PlanAdapter(getActivity(),mExercise);
             myView.setAdapter(adapter);
         }else{
             Toast.makeText(getActivity(), "No data", Toast.LENGTH_SHORT).show();

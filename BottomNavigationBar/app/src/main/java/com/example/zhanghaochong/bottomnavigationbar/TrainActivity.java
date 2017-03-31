@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.R;
 

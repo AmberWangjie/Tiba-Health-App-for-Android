@@ -9,45 +9,89 @@
         android:id="@+id/exercNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exercise 1"
+        android:text="Today's exercise"
         android:textSize="20dp"
-        android:textStyle="bold"/>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:srcCompat="@mipmap/a01"
-        android:layout_below="@+id/exercNum"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/planImage" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Name"
+        android:id="@+id/weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/planImage"
-        android:layout_alignTop="@+id/planImage"
-        android:layout_marginLeft="27dp"
-        android:id="@+id/exerciseName" />
+        android:layout_below="@+id/exercNum"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Thursday"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weekday"
+        android:layout_alignLeft="@+id/weekday"
+        android:text="3/29"
+        android:textSize="20sp" />
+
+    <TextView
+        android:text="Strength and stability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/exerciseName"
+        android:layout_toRightOf="@+id/weekday"
+        android:layout_below="@+id/exercNum"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textColor="#000000"/>
+
+    <ImageView
+        android:id="@+id/imgTaskNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_tasknum"
+        android:layout_alignBottom="@+id/timer"
+        android:layout_alignLeft="@+id/date" />
+
+    <TextView
+        android:id="@+id/taskNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:text="3 tasks"
+        android:textColor="#000000"
+        android:layout_toRightOf="@+id/imgTaskNum"
+        android:layout_alignBottom="@+id/exercTime"/>
 
     <ImageView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_timer"
-        android:layout_below="@+id/planImage"
-        android:layout_alignParentLeft="true"/>
+        android:layout_below="@+id/date"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/taskNum"
+        android:layout_marginLeft="30dp"/>
 
     <TextView
         android:id="@+id/exercTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2 min"
+        android:textColor="#000000"
         android:gravity="center"
-        android:layout_below="@+id/planImage"
         android:layout_toRightOf="@+id/timer"
         android:layout_alignBottom="@+id/timer"/>
+
+    <TextView
+        android:id="@+id/exercBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timer"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="Upper body"
+        android:textColor="#000000"/>
 
 </RelativeLayout>

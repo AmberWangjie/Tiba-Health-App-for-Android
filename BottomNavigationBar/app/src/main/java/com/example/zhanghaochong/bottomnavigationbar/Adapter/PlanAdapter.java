@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.R;
 
@@ -17,25 +18,22 @@ import java.util.ArrayList;
  * Created by zhanghaochong on 17/3/8.
  */
 
-public class PlanAdapter extends ArrayAdapter<Task> {
+public class PlanAdapter extends ArrayAdapter<Exercise> {
 
     Context c;
-    ArrayList<Task> plans;
-    int[] images;
+    ArrayList<Exercise> plans;
     LayoutInflater inflater;
 
-    public PlanAdapter(Context context, ArrayList<Task> plans, int[] images){
+    public PlanAdapter(Context context, ArrayList<Exercise> plans){
         super(context, R.layout.plan_model, plans);
 
         this.c = context;
         this.plans = plans;
-        this.images = images;
     }
 
     public class PlanHolder
     {
         TextView text;
-        ImageView img;
     }
 
     @Override
@@ -47,10 +45,8 @@ public class PlanAdapter extends ArrayAdapter<Task> {
 
         PlanHolder holder = new PlanHolder();
         holder.text = (TextView) convertView.findViewById(R.id.exerciseName);
-        holder.img = (ImageView) convertView.findViewById(R.id.planImage);
 
-        holder.text.setText(plans.get(position).getName());
-        holder.img.setImageResource(images[position]);
+        holder.text.setText(plans.get(position).getExerciseName());
 
         return convertView;
     }
