@@ -11,32 +11,65 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-/**
- * Created by zhanghaochong on 17/3/5.
- */
+import com.example.zhanghaochong.bottomnavigationbar.Data.User;
 
+/**
+ * Created by AmberWang on 17/3/5.
+ */
+//This fragment is to manage and view the account information of the user, including text info edition and photo upload
 public class AccountFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
     //private static final int RESULT_OK = 1;
-    ImageView imageToUpload;
-    Button uploadBtn;
+    private ImageView imageToUpload;
+    private Button uploadBtn;
+    private Button editBtn;
+
+    private EditText name_text;
+    private EditText phone_text;
+    private EditText email_text;
+    private EditText pt_text;
+    private EditText birth_text;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.account, container, false);
+
+        User user = new User();
         imageToUpload = (ImageView) v.findViewById(R.id.accountImage);
 
         uploadBtn = (Button) v.findViewById(R.id.uploadBtn);
 
+        editBtn = (Button) v.findViewById(R.id.info_update);
+
+        name_text = (EditText)v.findViewById(R.id.name_edit);
+        phone_text = (EditText) v.findViewById(R.id.phone_edit);
+        email_text = (EditText) v.findViewById(R.id.email_edit);
+        pt_text = (EditText) v.findViewById(R.id.pt_edit);
+        birth_text = (EditText) v.findViewById(R.id.birth_edit);
+
+        user.setUsername("amber");
+        user.setPhone("123");
+        user.setEmail("123@mail.com");
+        user.setPt("barney");
+        user.setBirth("07/17/1994");
+
+        name_text.setText(user.getUsername());
+        phone_text.setText(user.getPhone());
+        email_text.setText(user.getEmail());
+        pt_text.setText(user.getPt());
+        birth_text.setText(user.getBirth());
+
         imageToUpload.setOnClickListener(this);
         uploadBtn.setOnClickListener(this);
+        editBtn.setOnClickListener(this);
 
         return v;
     }
@@ -59,8 +92,20 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
                 }*/
                 break;
             case R.id.uploadBtn:
+                String choose = "Please choose a photo";
+                Toast.makeText(AccountFragment.this.getActivity(), choose, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, RESULT_LOAD_IMAGE);
+                break;
+            case R.id.info_update:
+                String update = "Update your account information";
+                Toast.makeText(AccountFragment.this.getActivity(), update, Toast.LENGTH_LONG).show();
+                User user = new User();
+                name_text.setText("");
+                phone_text.setText("");
+                email_text.setText("");
+                pt_text.setText("");
+                birth_text.setText("");
                 break;
         }
     }
