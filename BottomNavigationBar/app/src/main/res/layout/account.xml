@@ -64,8 +64,8 @@
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/birth_edit"
-        android:hint="Birthdate"
+        android:id="@+id/pswd_edit"
+        android:hint="@string/user_pswd"
         android:layout_below="@+id/name_edit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -77,25 +77,12 @@
         android:ems="10"
         android:id="@+id/email_edit"
         android:hint="Email"
-        android:layout_below="@+id/birth_edit"
+        android:layout_below="@+id/pswd_edit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/pt_edit"
-        android:hint="PT Name"
-        android:layout_below="@+id/phone_edit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
@@ -106,6 +93,44 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="@string/user_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/info_update"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/register"
+        style="@android:style/Widget.Button.Inset" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/pt_edit"
+        android:hint="PT Name"
+        android:layout_below="@+id/phone_edit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="sans-serif" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/birth_edit"
+        android:layout_below="@+id/pt_edit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="@string/user_birth"
+        android:fontFamily="sans-serif" />
 
 
 </RelativeLayout>
