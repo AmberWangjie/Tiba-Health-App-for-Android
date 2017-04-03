@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +35,7 @@ public class BluetoothConnectionService {
     ProgressDialog mProgressDialog;
 
     private ConnectedThread mConnectedThread;
+
 
     public BluetoothConnectionService(Context context) {
         mContext = context;
@@ -253,6 +255,10 @@ public class BluetoothConnectionService {
                     bytes = mmInStream.read(buffer);
                     String incomingMessage = new String(buffer, 0, bytes);
                     Log.d(TAG, "InputStream: " + incomingMessage);
+
+                    Toast.makeText(mContext,"you got message form bluetooth"+incomingMessage,Toast.LENGTH_SHORT).show();
+
+
                 } catch (IOException e) {
                     Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
                     break;
@@ -302,6 +308,7 @@ public class BluetoothConnectionService {
         //perform the write
         mConnectedThread.write(out);
     }
+
 
 }
 
