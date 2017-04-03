@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.LocalData.User;
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;

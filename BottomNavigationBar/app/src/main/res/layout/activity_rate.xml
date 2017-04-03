@@ -39,7 +39,8 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
+        android:clickable="true"
+        android:background="#FFFFFF"
         app:srcCompat="@mipmap/smile_5"
         android:layout_below="@+id/feel"
         android:layout_marginLeft="48dp"
@@ -50,7 +51,8 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
+        android:clickable="true"
+        android:background="#FFFFFF"
         app:srcCompat="@mipmap/smile_1"
         android:layout_below="@id/feel"
         android:id="@+id/imageButton3"
@@ -63,6 +65,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_3"
         android:layout_below="@id/feel"
@@ -75,6 +78,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_2"
         android:layout_alignBottom="@+id/imageButton4"
@@ -86,6 +90,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_5"
         android:layout_marginTop="30dp"
@@ -97,6 +102,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_1"
         android:id="@+id/imageButton7"
@@ -109,6 +115,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_3"
         android:id="@+id/imageButton8"
@@ -119,6 +126,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_2"
         android:id="@+id/imageButton9"
@@ -154,6 +162,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_4"
         android:id="@+id/imageButton10"
@@ -165,6 +174,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:background="@null"
         app:srcCompat="@mipmap/smile_4"
         android:id="@+id/imageButton11"

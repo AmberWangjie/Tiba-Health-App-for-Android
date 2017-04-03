@@ -9,7 +9,6 @@
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
     android:paddingTop="60dp"
-    android:paddingBottom="30dp"
     android:layout_alignParentTop="true"
     android:layout_alignParentStart="true">
 
@@ -66,12 +65,29 @@
         android:layout_toRightOf="@+id/exercDescp"
         android:layout_marginLeft="40dp"/>
 
-    <include layout="@layout/content_main"
+    <Button
+        android:text="Start workout"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:id="@+id/start"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/android:list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/timerDescp"
-        custom:donut_progress="50"
-        />
+        android:layout_height="240dp"
+        android:layout_below="@+id/exercDescp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+
 
 
 

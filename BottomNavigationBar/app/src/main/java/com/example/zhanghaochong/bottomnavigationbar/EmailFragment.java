@@ -3,6 +3,7 @@ package com.example.zhanghaochong.bottomnavigationbar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * Created by zhanghaochong on 17/3/5.
+ * Created by AmberWang on 17/3/5.
  */
 
 public class EmailFragment extends Fragment {
@@ -48,7 +49,7 @@ public class EmailFragment extends Fragment {
         cancelButton = (Button) v.findViewById(R.id.cancelButton);
         sendButton = (Button) v.findViewById(R.id.sendButton);
         //emailAddress = (EditText) v.findViewById(R.id.email_addr);
-        emailContent = (EditText) v.findViewById(R.id.email_content);
+        emailContent = (EditText) v.findViewById(R.id.email_address);
 
     }
 
@@ -58,6 +59,9 @@ public class EmailFragment extends Fragment {
         emailContent.setText("");
 
         Toast.makeText(EmailFragment.this.getActivity(), yourCancelResponse, Toast.LENGTH_SHORT).show();
+        //once cancel, navigate back to the main page
+        WorkoutFragment f = new WorkoutFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
 
     }
 

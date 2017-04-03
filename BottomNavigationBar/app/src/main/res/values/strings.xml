@@ -6,6 +6,11 @@
     <string name="upload">Upload your photo</string>
     <string name="user_email">Email:</string>
     <string name="user_phone">Cellular:</string>
+    <string name="user_pt">PT:</string>
+    <string name="user_birth">Birth:</string>
+    <string name="user_pswd">Password</string>
+    <string name="user_update">Edit</string>
+    <string name="user_reg">Register</string>
     <string name="Summary">SUMMARY</string>
     <string name="Greatwork">Great work!</string>
     <string name="how_pain">Any pain?</string>

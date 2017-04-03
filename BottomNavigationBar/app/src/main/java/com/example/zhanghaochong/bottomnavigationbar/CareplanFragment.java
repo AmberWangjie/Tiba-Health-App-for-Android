@@ -2,10 +2,7 @@ package com.example.zhanghaochong.bottomnavigationbar;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
-import com.example.zhanghaochong.bottomnavigationbar.PlanDisplayer.PlanAdapter;
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapter;
+import com.example.zhanghaochong.bottomnavigationbar.Adapter.PlanAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -23,8 +20,6 @@ import com.firebase.client.FirebaseError;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import java.util.ArrayList;
-
-import static android.R.id.list;
 
 /**
  * Created by zhanghaochong on 17/3/5.
@@ -34,8 +29,9 @@ public class CareplanFragment extends ListFragment{
 
     private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
+    ArrayList<Exercise> mExercise = new ArrayList<>();
     private ListView myView;
-    private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
+    //private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
     private PlanAdapter adapter;
     private DonutProgress dp;
 
@@ -107,9 +103,18 @@ public class CareplanFragment extends ListFragment{
 
             mTasks.add(t);
         }
+        Exercise e = new Exercise();
+        e.setExerciseName("Strength and stability");
+        e.setExerciseBody("Upper body");
+        e.setExerciseDate("3/29");
+        e.setExerciseDuration("3 min");
+        e.setmTask(mTasks);
+        e.setTaskNum("3");
+        mExercise.add(e);
+
 
         if(mTasks.size() > 0){
-            adapter = new PlanAdapter(getActivity(),mTasks, images);
+            adapter = new PlanAdapter(getActivity(),mExercise);
             myView.setAdapter(adapter);
         }else{
             Toast.makeText(getActivity(), "No data", Toast.LENGTH_SHORT).show();

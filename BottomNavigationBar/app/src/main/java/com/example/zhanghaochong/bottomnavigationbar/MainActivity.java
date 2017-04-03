@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapter;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarBadge;
 import com.roughike.bottombar.OnMenuTabClickListener;

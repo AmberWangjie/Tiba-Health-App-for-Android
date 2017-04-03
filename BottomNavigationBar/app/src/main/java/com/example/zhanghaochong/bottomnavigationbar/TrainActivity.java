@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.R;
 
@@ -64,7 +65,10 @@ public class TrainActivity extends Activity {
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timer.cancel();
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.rateActivity");
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         });
     }
@@ -85,9 +89,6 @@ public class TrainActivity extends Activity {
             textViewTime.setText("Done!");
             id += 1;
             if(id >= 3){
-                /*Intent Homeintent = new Intent(TrainActivity.this, MainActivity.class);
-                Homeintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(Homeintent);*/
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.rateActivity");
                 intent.putExtras(bundle);
 

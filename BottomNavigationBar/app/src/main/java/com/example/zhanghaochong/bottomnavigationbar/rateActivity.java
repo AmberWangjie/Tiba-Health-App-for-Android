@@ -1,6 +1,7 @@
 package com.example.zhanghaochong.bottomnavigationbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,70 +50,120 @@ public class rateActivity extends AppCompatActivity {
         rateButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton1.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.WHITE);
+                rateButton1.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton1.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton1.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton1.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton1.setBackgroundColor(Color.WHITE);
+                rateButton2.setBackgroundColor(Color.WHITE);
+                rateButton3.setBackgroundColor(Color.WHITE);
+                rateButton4.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.WHITE);
+                rateButton5.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton6.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.WHITE);
+                rateButton6.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton6.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton6.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton6.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.RED);
             }
         });
 
         rateButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rateButton6.setBackgroundColor(Color.WHITE);
+                rateButton7.setBackgroundColor(Color.WHITE);
+                rateButton8.setBackgroundColor(Color.WHITE);
+                rateButton9.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.WHITE);
+                rateButton10.setBackgroundColor(Color.RED);
             }
         });
     }
