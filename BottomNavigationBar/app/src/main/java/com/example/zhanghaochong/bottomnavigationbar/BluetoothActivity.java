@@ -1,6 +1,5 @@
 package com.example.zhanghaochong.bottomnavigationbar;
 
-import android.*;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -11,6 +10,8 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,10 +19,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
+import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapterBT;
 
 public class BluetoothActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "BluetoothActivity";
@@ -36,6 +46,13 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     Button btnSend;
     EditText etSend;
 
+
+    private Firebase mRef;
+    private ArrayList<Task> mTasks = new ArrayList<>();
+    private MyAdapterBT adapter;
+    private RecyclerView mRecyclerView;
+    private ListView mTaskListView;
+
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
 
@@ -44,6 +61,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     ListView lvNewDevices;
 
     BluetoothDevice mBTDevice;
+    boolean regestered1,regestered2,regestered3,regestered4;
 
     //Broadcase recever to recever status of bluetooth on and off.
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -67,6 +85,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                         break;
                 }
             }
+            regestered1 = true;
         }
     };
 
@@ -95,6 +114,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                         break;
                 }
             }
+            regestered2 = true;
         }
     };
 
@@ -115,6 +135,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                 mDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, mBTDevices);
                 lvNewDevices.setAdapter(mDeviceListAdapter);
             }
+            regestered3 = true;
         }
     };
 
@@ -141,18 +162,30 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                     Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
                 }
             }
+            regestered4 = true;
         }
     };
 
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy: called.");
-        super.onDestroy();
-        unregisterReceiver(mBroadcastReceiver1);
-        unregisterReceiver(mBroadcastReceiver2);
-        unregisterReceiver(mBroadcastReceiver3);
-        unregisterReceiver(mBroadcastReceiver4);
+
+
+            Log.d(TAG, "onDestroy: called.");
+            super.onDestroy();
+            if (regestered1 ) {
+                unregisterReceiver(mBroadcastReceiver1);
+            }
+            if (regestered2) {
+                unregisterReceiver(mBroadcastReceiver2);
+            }
+            if (regestered3) {
+                unregisterReceiver(mBroadcastReceiver3);
+            }
+            if (regestered4) {
+                unregisterReceiver(mBroadcastReceiver4);
+            }
+
     }
 
     @Override
@@ -192,6 +225,18 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                 startConnection();
             }
         });
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerID);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+//        mTaskListView = (ListView) findViewById(R.id.)
+
+        Firebase.setAndroidContext(this);
+        mRef = new Firebase("https://tibaapplication.firebaseio.com/");
+
+        retrieveData();
+
+
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,6 +384,57 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
 //            Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
 //        }
 //    }
+    }
+
+    private void retrieveData(){
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                getUpdates(dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    private void getUpdates(DataSnapshot ds) {
+        mTasks.clear();
+
+        for(DataSnapshot data : ds.getChildren()) {
+            Task t = new Task();
+            t.setName(data.getValue(Task.class).getName());
+            t.setDescription(data.getValue(Task.class).getDescription());
+            t.setTime(data.getValue(Task.class).getTime());
+            t.setId(data.getValue(Task.class).getId());
+
+            mTasks.add(t);
+        }
+
+        if(mTasks.size() > 0){
+            //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
+            adapter = new MyAdapterBT(BluetoothActivity.this,mTasks);
+            mRecyclerView.setAdapter(adapter);
+        }else{
+            Toast.makeText(BluetoothActivity.this, "No data", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

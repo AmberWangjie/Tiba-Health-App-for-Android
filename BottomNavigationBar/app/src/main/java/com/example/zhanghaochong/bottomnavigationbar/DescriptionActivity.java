@@ -35,8 +35,8 @@ public class DescriptionActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.description_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
         id = intent.getIntExtra(MESSAGE_ID, 0);
 
         textViewExe = (TextView) findViewById(R.id.textViewExe);
