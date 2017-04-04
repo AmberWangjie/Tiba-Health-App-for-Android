@@ -1,5 +1,6 @@
 package com.example.zhanghaochong.bottomnavigationbar;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,12 +27,13 @@ public class LocalDBActivity extends AppCompatActivity {
 
     private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_db);
-
+        mContext = getApplicationContext();
 
         mRef = new Firebase("https://tibaapplication.firebaseio.com/");
 
@@ -91,10 +93,12 @@ public class LocalDBActivity extends AppCompatActivity {
             public void onClick(View v) {
                 List<Exercise> exercises = DataSupport.findAll(Exercise.class);
                 for (Exercise exercise: exercises) {
-                    Log.d("LocalDBActivity", "book name is " + exercise.getName());
-                    Log.d("LocalDBActivity", "book author is " + exercise.getDescription());
-                    Log.d("LocalDBActivity", "book pages is " + exercise.getDescription());
-                    Log.d("LocalDBActivity", "book price is " + exercise.getCode());
+                    Log.d("LocalDBActivity", "task name is " + exercise.getName());
+                    Log.d("LocalDBActivity", "task Description is " + exercise.getDescription());
+                    Log.d("LocalDBActivity", "task time is " + exercise.getTime());
+                    Log.d("LocalDBActivity", "task code is " + exercise.getCode());
+
+                    Toast.makeText(mContext,"task name is " + exercise.getName()+"\n"+"task time is " + exercise.getTime(),Toast.LENGTH_SHORT).show();
 
                 }
             }

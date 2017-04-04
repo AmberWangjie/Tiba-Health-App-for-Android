@@ -45,6 +45,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     Button btnStartConnection;
     Button btnSend;
     EditText etSend;
+    int flag = 1;
 
 
     private Firebase mRef;
@@ -59,6 +60,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
     public DeviceListAdapter mDeviceListAdapter;
     ListView lvNewDevices;
+    Context mContext;
 
     BluetoothDevice mBTDevice;
     boolean regestered1,regestered2,regestered3,regestered4;
@@ -152,6 +154,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     //inside BroadcastReceiver4
                     mBTDevice = mDevice;
+                    flag = 0;
                 }
                 //case2: creating a bone
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
@@ -172,6 +175,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
 
 
             Log.d(TAG, "onDestroy: called.");
+            flag = 1;
             super.onDestroy();
             if (regestered1 ) {
                 unregisterReceiver(mBroadcastReceiver1);
@@ -182,9 +186,9 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
             if (regestered3) {
                 unregisterReceiver(mBroadcastReceiver3);
             }
-            if (regestered4) {
+
                 unregisterReceiver(mBroadcastReceiver4);
-            }
+
 
     }
 
@@ -219,10 +223,17 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
+        mContext = getApplicationContext();
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startConnection();
+                if(flag == 1) {
+                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
+                    //btnStartConnection.setEnabled(false);
+                }
+                else {
+                    startConnection();
+                }
             }
         });
 

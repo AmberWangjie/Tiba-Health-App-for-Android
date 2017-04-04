@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="ON/OFF"
+            android:text="ON/OFF the Bluetooth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnONOFF" />
@@ -56,12 +56,11 @@
             android:id="@+id/btnStartConnection"
             android:text="Start Connection"/>
 
-        <EditText
-            android:layout_width="250dp"
+        <TextView
+            android:text="Now, you can choose one task and send it's analytical code."
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Text Here"
-            android:layout_below="@+id/lvNewDevices"
-            android:id="@+id/editText"/>
+            android:id="@+id/textView3" />
 
         <ListView
             android:layout_width="match_parent"
@@ -74,6 +73,13 @@
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Text Here"
+            android:layout_below="@+id/lvNewDevices"
+            android:id="@+id/editText"/>
 
         <Button
             android:layout_width="wrap_content"
