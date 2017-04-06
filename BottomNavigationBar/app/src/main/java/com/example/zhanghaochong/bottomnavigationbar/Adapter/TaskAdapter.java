@@ -52,12 +52,17 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         holder.seqNum.setText(sequence);
         holder.taskName = (TextView) convertView.findViewById(R.id.taskName);
         holder.taskName.setText(Tasks.get(position).getName());
+        long time = Integer.parseInt(Tasks.get(position).getTime());
         holder.taskTime = (TextView) convertView.findViewById(R.id.taskTime);
-        holder.taskTime.setText("3 min");
+        holder.taskTime.setText(FormatConverter(time) + "sec");
         holder.taskAbstract = (TextView) convertView.findViewById(R.id.taskAbstract);
-        //holder.taskAbstract.setText(Tasks.get(position).getDescription());
-
+        holder.taskAbstract.setText(Tasks.get(position).getAbstraction());
 
         return convertView;
+    }
+
+    public String FormatConverter(long time){
+        String taskTime = String.format("%02d", java.util.concurrent.TimeUnit.MILLISECONDS.toSeconds(time));
+        return taskTime;
     }
 }

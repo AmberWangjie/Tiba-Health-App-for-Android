@@ -27,11 +27,9 @@ import java.util.ArrayList;
 
 public class CareplanFragment extends ListFragment{
 
-    private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
     ArrayList<Exercise> mExercise = new ArrayList<>();
     private ListView myView;
-    //private int[] images = {R.mipmap.a08, R.mipmap.a04, R.mipmap.a06};
     private PlanAdapter adapter;
     private DonutProgress dp;
 
@@ -42,76 +40,28 @@ public class CareplanFragment extends ListFragment{
 
         myView = (ListView) v.findViewById(android.R.id.list);
 
-        Firebase.setAndroidContext(getActivity());
-        mRef = new Firebase("https://tibaapplication.firebaseio.com/");
-
         dp = (DonutProgress)v.findViewById(R.id.donutProgress);
         //hard coded progress
         dp.setProgress(20);
 
-        retrieveData();
+        getUpdates();
 
         return v;
     }
 
-    @Override
+    /*@Override
     public void onListItemClick(ListView l, View v, int position, long id){
         TextView editText = (TextView)v.findViewById(R.id.exerciseName);
         String myPlan = String.format("%s\n%s", mTasks.get(position).getName(), mTasks.get(position).getDescription());
 
         editText.setText(myPlan);
     }
+*/
 
-    private void retrieveData(){
-        mRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                getUpdates(dataSnapshot);
-            }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                getUpdates(dataSnapshot);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-    }
-
-    private void getUpdates(DataSnapshot ds) {
+    private void getUpdates() {
         mTasks.clear();
-
-        for(DataSnapshot data : ds.getChildren()) {
-            Task t = new Task();
-            t.setName(data.getValue(Task.class).getName());
-            t.setDescription(data.getValue(Task.class).getDescription());
-            t.setTime(data.getValue(Task.class).getTime());
-            t.setId(data.getValue(Task.class).getId());
-
-            mTasks.add(t);
-        }
-        Exercise e = new Exercise();
-        e.setExerciseName("Strength and stability");
-        e.setExerciseBody("Upper body");
-        e.setExerciseDate("3/29");
-        e.setExerciseDuration("3 min");
-        e.setmTask(mTasks);
-        e.setTaskNum("3");
-        mExercise.add(e);
-
+        mTasks = mExercise.get(0).getmTask();
 
         if(mTasks.size() > 0){
             adapter = new PlanAdapter(getActivity(),mExercise);

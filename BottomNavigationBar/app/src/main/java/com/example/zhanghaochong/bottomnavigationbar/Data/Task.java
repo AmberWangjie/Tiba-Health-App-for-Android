@@ -17,6 +17,7 @@ import com.firebase.client.utilities.PushIdGenerator;
 public class Task implements Parcelable{
 
     private String description;
+    private String abstraction;
     private String name;
     private String time;
     private String id;
@@ -29,11 +30,12 @@ public class Task implements Parcelable{
         this.name = name;
    }
 
-    public Task(String name, String description, String time, String id){
+    public Task(String name, String description, String time, String id, String abstraction){
         this.name = name;
         this.description = description;
         this.time = time;
         this.id = id;
+        this.abstraction = abstraction;
     }
 
     public String getId() {
@@ -66,6 +68,14 @@ public class Task implements Parcelable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAbstraction() {
+        return abstraction;
+    }
+
+    public void setAbstraction(String abstraction) {
+        this.abstraction = abstraction;
     }
 
     //Parcelling part

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarBadge;
@@ -15,9 +16,10 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements WorkoutFragment.OnExercisePass{
 
     private BottomBar mBottomBar;
+    private ArrayList<Exercise> mExercises = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(id == R.id.BottombaritemTwo){
                     CareplanFragment f = new CareplanFragment();
+                    f.mExercise = mExercises;
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                 }
                 else if(id == R.id.BottombaritemThree) {
@@ -67,5 +70,11 @@ public class MainActivity extends AppCompatActivity {
         BottomBarBadge unread;
         unread = mBottomBar.makeBadgeForTabAt(3, "#FF0000", 13);
         unread.show();
+    }
+
+    @Override
+    public void setExercise(Exercise e){
+        mExercises.clear();
+        mExercises.add(e);
     }
 }

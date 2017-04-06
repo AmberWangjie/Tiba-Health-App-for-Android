@@ -33,7 +33,11 @@ public class PlanAdapter extends ArrayAdapter<Exercise> {
 
     public class PlanHolder
     {
-        TextView text;
+        TextView exerciseName;
+        TextView taskNum;
+        TextView exercTime;
+        TextView exercBody;
+        TextView date;
     }
 
     @Override
@@ -44,9 +48,17 @@ public class PlanAdapter extends ArrayAdapter<Exercise> {
         }
 
         PlanHolder holder = new PlanHolder();
-        holder.text = (TextView) convertView.findViewById(R.id.exerciseName);
+        holder.exerciseName = (TextView) convertView.findViewById(R.id.exerciseName);
+        holder.taskNum = (TextView) convertView.findViewById(R.id.taskNum);
+        holder.exercTime = (TextView) convertView.findViewById(R.id.exercTime);
+        holder.exercBody = (TextView) convertView.findViewById(R.id.exercBody);
+        holder.date = (TextView) convertView.findViewById(R.id.date);
 
-        holder.text.setText(plans.get(position).getExerciseName());
+        holder.exerciseName.setText(plans.get(position).getExerciseName());
+        holder.taskNum.setText(plans.get(position).getTaskNum() + " tasks");
+        holder.exercTime.setText(plans.get(position).getExerciseDuration());
+        holder.exercBody.setText(plans.get(position).getExerciseBody());
+        holder.date.setText(plans.get(position).getExerciseDate());
 
         return convertView;
     }
