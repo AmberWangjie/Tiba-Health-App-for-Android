@@ -45,16 +45,16 @@ public class MyAdapterBT extends RecyclerView.Adapter<MyAdapterBT.ViewHolder>{
     public MyAdapterBT.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model,parent,false);
         final ViewHolder holder = new ViewHolder(view);
-        holder.TaskView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                Task task = tasks.get(position);
-                Toast.makeText(view.getContext(),"you clicked view"+task.getName(),Toast.LENGTH_SHORT).show();
-                byte[] bytes = tasks.get(position).getName().toString().getBytes(Charset.defaultCharset());
-                //mBluetoothConnection.write(bytes);
-            }
-        });
+//        holder.TaskView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int position = holder.getAdapterPosition();
+//                Task task = tasks.get(position);
+//                Toast.makeText(view.getContext(),"you clicked view"+task.getName(),Toast.LENGTH_SHORT).show();
+//                byte[] bytes = tasks.get(position).getName().toString().getBytes(Charset.defaultCharset());
+//                mBluetoothConnection.write(bytes);
+//            }
+//        });
        // MyAdapterBT.ViewHolder holder=new MyAdapterBT.ViewHolder(view);
         return holder;
     }

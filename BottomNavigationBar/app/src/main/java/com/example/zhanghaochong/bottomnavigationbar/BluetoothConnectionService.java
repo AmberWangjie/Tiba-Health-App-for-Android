@@ -6,6 +6,8 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -256,7 +258,12 @@ public class BluetoothConnectionService {
                     String incomingMessage = new String(buffer, 0, bytes);
                     Log.d(TAG, "InputStream: " + incomingMessage);
 
-                    Toast.makeText(mContext,"you got message form bluetooth"+incomingMessage,Toast.LENGTH_SHORT).show();
+
+                    Intent incomingMessageIntent = new Intent("incomingMessage");
+                    incomingMessageIntent.putExtra("theMessage",incomingMessage);
+                    LocalBroadcastManager.getInstance(mContext).sendBroadcast(incomingMessageIntent);
+
+                    //Toast.makeText(mContext,"you got message form bluetooth"+incomingMessage,Toast.LENGTH_SHORT).show();
 
 
                 } catch (IOException e) {

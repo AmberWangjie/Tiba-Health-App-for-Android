@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,9 +32,12 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapterBT;
+import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapterBTListView;
 
-public class BluetoothActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+//implements AdapterView.OnItemClickListener
+
+
+public class BluetoothActivity extends AppCompatActivity  {
     private static final String TAG = "BluetoothActivity";
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
@@ -41,6 +45,8 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
     Button btnEnableDisable_Discoverable;
 
     BluetoothConnectionService mBluetoothConnection;
+    TextView incomingMessages;
+    StringBuilder messages;
 
     Button btnStartConnection;
     Button btnSend;
@@ -50,7 +56,8 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
 
     private Firebase mRef;
     private ArrayList<Task> mTasks = new ArrayList<>();
-    private MyAdapterBT adapter;
+    //private MyAdapterBT adapter;
+    public MyAdapterBTListView adapter;
     private RecyclerView mRecyclerView;
     private ListView mTaskListView;
 
@@ -75,6 +82,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
                         Log.d(TAG, "mBroadcastReceiver1: STATE OFF");
+                        //Toast.makeText(mContext,"please turn on the blue tooth first",Toast.LENGTH_SHORT).show();
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
                         Log.d(TAG, "mBroadcastReceiver1: STATE TURNING OFF");
@@ -203,6 +211,8 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
+        mTaskListView = (ListView) findViewById(R.id.taskList);
+
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
         etSend = (EditText) findViewById(R.id.editText);
@@ -212,8 +222,11 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
         registerReceiver(mBroadcastReceiver4, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        lvNewDevices.setOnItemClickListener(BluetoothActivity.this);
+        //lvNewDevices.setOnItemClickListener(BluetoothActivity.this);
 
+        lvNewDevices.setOnItemClickListener(mDeviceClickListener);
+
+        mTaskListView.setOnItemClickListener(mTaskClickListener);
         btnONOFF.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -237,15 +250,15 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerID);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerID);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 //        mTaskListView = (ListView) findViewById(R.id.)
 
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://tibaapplication.firebaseio.com/");
 
-        retrieveData();
+       retrieveData();
 
 
 
@@ -253,10 +266,31 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onClick(View view) {
                 byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
-                mBluetoothConnection.write(bytes);
+                try {
+                    mBluetoothConnection.write(bytes);
+                }catch(NullPointerException e) {
+                    Toast.makeText(mContext,"You have not connect with other devices yet, please check then continue",Toast.LENGTH_SHORT).show();
+                }
+                etSend.setText("");
             }
         });
+
+        incomingMessages = (TextView) findViewById(R.id.incomingMessage);
+        messages = new StringBuilder();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRecevier,new IntentFilter("incomingMessage"));
     }
+
+
+    BroadcastReceiver mRecevier = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String text = intent.getStringExtra("theMessage");
+
+            messages.append(text + "\n");
+            incomingMessages.setText(messages);
+        }
+    };
 
     //create method for starting connection
 //***remember the conncction will fail and app will crash if you haven't paired first
@@ -279,23 +313,50 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
      */
     private AdapterView.OnItemClickListener mDeviceClickListener
             = new AdapterView.OnItemClickListener() {
-        public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-            // Cancel discovery because it's costly and we're about to connect
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             mBluetoothAdapter.cancelDiscovery();
+            Log.d(TAG, "view_id = " + view.getTag());
+            Log.d(TAG, "adapterview_id = " + adapterView.getTag());
+            Log.d(TAG, "onItemClick: You Clicked on a device.");
+            String deviceName = mBTDevices.get(i).getName();
+            String deviceAddress = mBTDevices.get(i).getAddress();
 
-            // Get the device MAC address, which is the last 17 chars in the View
-            String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
+            Log.d(TAG, "onItemClick: deviceName = " + deviceName);
+            Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 
-            // Create the result Intent and include the MAC address
-            Intent intent = new Intent();
-            intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
+            //create the bond.
+            //NOTE: Requires API 17+? I think this is JellyBean
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                Log.d(TAG, "Trying to pair with " + deviceName);
+                mBTDevices.get(i).createBond();
 
-            // Set result and finish this Activity
-            setResult(Activity.RESULT_OK, intent);
-            finish();
+                mBTDevice = mBTDevices.get(i);
+                mBluetoothConnection = new BluetoothConnectionService(BluetoothActivity.this);
+            }
         }
     };
+
+
+    private AdapterView.OnItemClickListener mTaskClickListener
+            = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            Log.d(TAG, "view_id = " + view.getTag());
+            Log.d(TAG, "adapterview_id = " + adapterView.getTag());
+            Log.d(TAG, "onItemClick: You Clicked on a task.");
+
+ //           int position = holder.getAdapterPosition();
+            Task task = mTasks.get(i);
+                //Toast.makeText(view.getContext(),"you clicked view"+task.getName(),Toast.LENGTH_SHORT).show();
+            byte[] bytes = mTasks.get(i).getName().toString().getBytes(Charset.defaultCharset());
+            try {
+                mBluetoothConnection.write(bytes);
+            }catch (NullPointerException e) {
+                Toast.makeText(mContext,"You have not connect with other devices yet, please check then continue",Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
 
     //turn on/off the blue tooth
     public void enableDisableBT() {
@@ -351,29 +412,33 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
             IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
         }
+        if( mBluetoothAdapter.getState()== BluetoothAdapter.STATE_OFF) {
+            Toast.makeText(mContext,"please turn on the blue tooth first",Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        mBluetoothAdapter.cancelDiscovery();
-
-        Log.d(TAG, "onItemClick: You Clicked on a device.");
-        String deviceName = mBTDevices.get(i).getName();
-        String deviceAddress = mBTDevices.get(i).getAddress();
-
-        Log.d(TAG, "onItemClick: deviceName = " + deviceName);
-        Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
-
-        //create the bond.
-        //NOTE: Requires API 17+? I think this is JellyBean
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            Log.d(TAG, "Trying to pair with " + deviceName);
-            mBTDevices.get(i).createBond();
-
-            mBTDevice = mBTDevices.get(i);
-            mBluetoothConnection = new BluetoothConnectionService(BluetoothActivity.this);
-
-        }
+//    @Override
+//    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//        mBluetoothAdapter.cancelDiscovery();
+//        Log.d(TAG, "view_id = " + view.getTag());
+//        Log.d(TAG, "adapterview_id = " + adapterView.getTag());
+//        Log.d(TAG, "onItemClick: You Clicked on a device.");
+//        String deviceName = mBTDevices.get(i).getName();
+//        String deviceAddress = mBTDevices.get(i).getAddress();
+//
+//        Log.d(TAG, "onItemClick: deviceName = " + deviceName);
+//        Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
+//
+//        //create the bond.
+//        //NOTE: Requires API 17+? I think this is JellyBean
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+//            Log.d(TAG, "Trying to pair with " + deviceName);
+//            mBTDevices.get(i).createBond();
+//
+//            mBTDevice = mBTDevices.get(i);
+//            mBluetoothConnection = new BluetoothConnectionService(BluetoothActivity.this);
+//
+//        }
 
 
         /**
@@ -395,7 +460,8 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
 //            Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
 //        }
 //    }
-    }
+ //   }
+
 
     private void retrieveData(){
         mRef.addChildEventListener(new ChildEventListener() {
@@ -440,9 +506,11 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
         }
 
         if(mTasks.size() > 0){
-            //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
-            adapter = new MyAdapterBT(BluetoothActivity.this,mTasks);
-            mRecyclerView.setAdapter(adapter);
+//            //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
+//            adapter = new MyAdapterBT(BluetoothActivity.this,mTasks);
+//            mRecyclerView.setAdapter(adapter);
+            adapter = new MyAdapterBTListView(BluetoothActivity.this,R.layout.tast_adapter_view,mTasks);
+            mTaskListView.setAdapter(adapter);
         }else{
             Toast.makeText(BluetoothActivity.this, "No data", Toast.LENGTH_SHORT).show();
         }
