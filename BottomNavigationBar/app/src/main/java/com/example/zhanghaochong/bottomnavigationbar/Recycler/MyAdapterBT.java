@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.BluetoothConnectionService;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.R;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import com.example.zhanghaochong.bottomnavigationbar.BluetoothConnectionService;
 
 /**
  * Created by tianyarong on 2017/3/31.
