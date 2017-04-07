@@ -1,6 +1,5 @@
 package com.example.zhanghaochong.bottomnavigationbar;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -8,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -23,21 +21,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
+import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapterBTListView;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
-import com.example.zhanghaochong.bottomnavigationbar.Recycler.MyAdapterBTListView;
 
 //implements AdapterView.OnItemClickListener
 
 
-public class BluetoothActivity extends AppCompatActivity  {
+public class BluetoothActivity extends AppCompatActivity {
     private static final String TAG = "BluetoothActivity";
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
@@ -509,7 +506,7 @@ public class BluetoothActivity extends AppCompatActivity  {
 //            //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
 //            adapter = new MyAdapterBT(BluetoothActivity.this,mTasks);
 //            mRecyclerView.setAdapter(adapter);
-            adapter = new MyAdapterBTListView(BluetoothActivity.this,R.layout.tast_adapter_view,mTasks);
+            adapter = new MyAdapterBTListView(BluetoothActivity.this, R.layout.tast_adapter_view,mTasks);
             mTaskListView.setAdapter(adapter);
         }else{
             Toast.makeText(BluetoothActivity.this, "No data", Toast.LENGTH_SHORT).show();
