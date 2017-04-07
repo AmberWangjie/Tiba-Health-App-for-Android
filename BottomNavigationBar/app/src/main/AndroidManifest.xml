@@ -48,16 +48,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".LocalDBActivity">
+        <activity android:name=".RateActivity">
             <intent-filter>
-                <action android:name="com.example.zhanghaochong.bottomnavigationbar.LocalDBActivity" />
+                <action android:name="com.example.zhanghaochong.bottomnavigationbar.RateActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".rateActivity">
+        <activity android:name=".LocalDBActivity">
             <intent-filter>
-                <action android:name="com.example.zhanghaochong.bottomnavigationbar.rateActivity" />
+                <action android:name="com.example.zhanghaochong.bottomnavigationbar.LocalDBActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -8,7 +8,7 @@
     android:id="@+id/exerciseView"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
-    android:paddingTop="60dp"
+    android:paddingTop="20dp"
     android:layout_alignParentTop="true"
     android:layout_alignParentStart="true">
 

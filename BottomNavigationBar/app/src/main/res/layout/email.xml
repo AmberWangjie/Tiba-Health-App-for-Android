@@ -75,7 +75,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="16dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="55dp"
         android:textAppearance="@style/BB_BottomBarItem_Fixed.Title"
         android:textSize="18sp"
         android:fontFamily="casual"

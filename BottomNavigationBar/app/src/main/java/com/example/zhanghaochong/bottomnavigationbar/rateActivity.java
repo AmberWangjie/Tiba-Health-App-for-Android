@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class rateActivity extends AppCompatActivity {
+public class RateActivity extends AppCompatActivity {
 
     Bundle bundle;
     Button subMit;
@@ -25,7 +25,7 @@ public class rateActivity extends AppCompatActivity {
         subMit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent Homeintent = new Intent(rateActivity.this, MainActivity.class);
+                Intent Homeintent = new Intent(RateActivity.this, MainActivity.class);
                 Homeintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(Homeintent);
             }

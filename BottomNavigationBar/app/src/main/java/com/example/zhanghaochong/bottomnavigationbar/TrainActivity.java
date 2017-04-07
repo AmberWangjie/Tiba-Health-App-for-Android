@@ -65,7 +65,7 @@ public class TrainActivity extends Activity {
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.rateActivity");
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.RateActivity");
                 intent.putExtras(bundle);
 
                 startActivity(intent);
@@ -89,7 +89,7 @@ public class TrainActivity extends Activity {
             textViewTime.setText("Done!");
             id += 1;
             if(id >= 3){
-                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.rateActivity");
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.RateActivity");
                 intent.putExtras(bundle);
 
                 startActivity(intent);

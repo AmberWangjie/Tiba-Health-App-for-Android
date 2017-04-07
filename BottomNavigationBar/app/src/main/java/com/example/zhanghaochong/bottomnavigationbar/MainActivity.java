@@ -30,9 +30,6 @@ public class MainActivity extends AppCompatActivity implements WorkoutFragment.O
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setItemsFromMenu(R.menu.menu_main, new OnMenuTabClickListener() {
             @Override
@@ -66,10 +63,11 @@ public class MainActivity extends AppCompatActivity implements WorkoutFragment.O
             }
 
         });
-        mBottomBar.mapColorForTab(0, "#F44336");
-        mBottomBar.mapColorForTab(1, "#E91E63");
-        mBottomBar.mapColorForTab(2, "#FF5722");
-        mBottomBar.mapColorForTab(3, "#2196F3");
+        mBottomBar.mapColorForTab(0, "#0288D1");
+        mBottomBar.mapColorForTab(1, "#039BE5");
+        mBottomBar.mapColorForTab(2, "#03A9F4");
+        mBottomBar.mapColorForTab(3, "#29B6F6");
+        mBottomBar.mapColorForTab(4, "#4FC3F7");
 
         BottomBarBadge unread;
         unread = mBottomBar.makeBadgeForTabAt(3, "#FF0000", 13);

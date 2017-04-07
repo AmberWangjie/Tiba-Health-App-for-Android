@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
-    android:paddingTop="55dp"
+    android:paddingTop="20dp"
     android:weightSum="1">
 
     <com.github.lzyzsd.circleprogress.DonutProgress
