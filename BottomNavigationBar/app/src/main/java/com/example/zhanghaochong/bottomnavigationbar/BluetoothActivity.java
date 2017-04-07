@@ -180,7 +180,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
 
             Log.d(TAG, "onDestroy: called.");
-            flag = 1;
+            //flag = 1;
             super.onDestroy();
             if (regestered1 ) {
                 unregisterReceiver(mBroadcastReceiver1);
@@ -237,12 +237,19 @@ public class BluetoothActivity extends AppCompatActivity {
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flag == 1) {
-                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
-                    //btnStartConnection.setEnabled(false);
-                }
-                else {
+//                if(flag == 1) {
+//                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
+//                    //btnStartConnection.setEnabled(false);
+//                }
+//                else {
+//                    startConnection();
+//                }
+
+                try {
                     startConnection();
+                }catch (NullPointerException e) {
+
+                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
