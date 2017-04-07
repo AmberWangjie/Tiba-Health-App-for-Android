@@ -47,7 +47,8 @@
             android:layout_below="@+id/btnStartConnection"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:id="@+id/lvNewDevices"/>
+            android:id="@+id/lvNewDevices"
+            android:tag="firstlist" />
         <Button
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -64,15 +65,15 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:id="@+id/taskList" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mRecyclerID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/mRecyclerID"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-        </android.support.v7.widget.RecyclerView>
+        <!--</android.support.v7.widget.RecyclerView>-->
 
         <EditText
             android:layout_width="250dp"
@@ -88,6 +89,13 @@
             android:id="@+id/btnSend"
             android:layout_toRightOf="@+id/editText"
             android:layout_below="@+id/lvNewDevices"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/incomingMessage"
+            android:layout_marginTop="10dp"
+            android:text="Incoming Messages" />
 
     </LinearLayout>
 </ScrollView>
