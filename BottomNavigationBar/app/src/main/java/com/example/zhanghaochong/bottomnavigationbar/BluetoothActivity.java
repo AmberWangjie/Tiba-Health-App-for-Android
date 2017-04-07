@@ -245,10 +245,20 @@ public class BluetoothActivity extends AppCompatActivity {
 //                    startConnection();
 //                }
 
-                try {
-                    startConnection();
-                }catch (NullPointerException e) {
+//                try {
+//                    startConnection();
+//                }catch (NullPointerException e) {
+//
+//                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
+//                }
 
+                if(mBTDevice == null) {
+                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
+                }
+                else if(mBTDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                    startConnection();
+                }
+                else{
                     Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
                 }
             }
