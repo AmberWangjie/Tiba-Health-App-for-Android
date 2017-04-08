@@ -48,7 +48,7 @@ public class BluetoothActivity extends AppCompatActivity {
     Button btnStartConnection;
     Button btnSend;
     EditText etSend;
-    int flag = 1;
+//    int flag = 1;
 
 
     private Firebase mRef;
@@ -159,7 +159,7 @@ public class BluetoothActivity extends AppCompatActivity {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     //inside BroadcastReceiver4
                     mBTDevice = mDevice;
-                    flag = 0;
+//                    flag = 0;
                 }
                 //case2: creating a bone
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
@@ -180,7 +180,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
 
             Log.d(TAG, "onDestroy: called.");
-            //flag = 1;
+
             super.onDestroy();
             if (regestered1 ) {
                 unregisterReceiver(mBroadcastReceiver1);
@@ -192,9 +192,10 @@ public class BluetoothActivity extends AppCompatActivity {
                 unregisterReceiver(mBroadcastReceiver3);
             }
 
-                unregisterReceiver(mBroadcastReceiver4);
-
-
+        unregisterReceiver(mBroadcastReceiver4);
+        if(mBluetoothConnection!= null) {
+            mBluetoothConnection.stop();
+        }
     }
 
     @Override
@@ -237,30 +238,16 @@ public class BluetoothActivity extends AppCompatActivity {
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(flag == 1) {
-//                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
-//                    //btnStartConnection.setEnabled(false);
-//                }
-//                else {
-//                    startConnection();
-//                }
 
-//                try {
-//                    startConnection();
-//                }catch (NullPointerException e) {
-//
-//                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
-//                }
-
-                if(mBTDevice == null) {
-                    Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
-                }
-                else if(mBTDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                   // Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
+                    //btnStartConnection.setEnabled(false);
+                try {
                     startConnection();
-                }
-                else{
+                }catch (NullPointerException e) {
+
                     Toast.makeText(mContext,"You should only click this button after a successful pair.",Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 

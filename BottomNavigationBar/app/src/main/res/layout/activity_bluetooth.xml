@@ -46,7 +46,7 @@
             android:layout_marginTop="15dp"
             android:layout_below="@+id/btnStartConnection"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:id="@+id/lvNewDevices"
             android:tag="firstlist" />
         <Button
@@ -72,7 +72,6 @@
             <!--android:id="@+id/mRecyclerID"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content">-->
-
         <!--</android.support.v7.widget.RecyclerView>-->
 
         <EditText
