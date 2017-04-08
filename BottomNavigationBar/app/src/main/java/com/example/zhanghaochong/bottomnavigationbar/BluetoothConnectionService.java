@@ -45,6 +45,7 @@ public class BluetoothConnectionService {
     }
 
 
+
     /**
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted
@@ -182,13 +183,41 @@ public class BluetoothConnectionService {
         Log.d(TAG, "start");
 
         // Cancel any thread attempting to make a connection
+
         if (mConnectThread != null) {
             mConnectThread.cancel();
             mConnectThread = null;
         }
+
+        if(mConnectedThread != null) {
+            mConnectedThread.cancel();
+            mConnectedThread = null;
+        }
+
         if (mInsecureAcceptThread == null) {
             mInsecureAcceptThread = new AcceptThread();
             mInsecureAcceptThread.start();
+        }
+    }
+
+    public synchronized void stop() {
+        Log.d(TAG, "stop");
+
+        // Cancel any thread attempting to make a connection
+
+        if (mConnectThread != null) {
+            mConnectThread.cancel();
+            mConnectThread = null;
+        }
+
+        if(mConnectedThread != null) {
+            mConnectedThread.cancel();
+            mConnectedThread = null;
+        }
+
+        if (mInsecureAcceptThread != null) {
+            mInsecureAcceptThread.cancel();
+            mInsecureAcceptThread = null;
         }
     }
 
@@ -286,7 +315,10 @@ public class BluetoothConnectionService {
         /* Call this from the main activity to shutdown the connection */
         public void cancel() {
             try {
+//                mmInStream.close();
+//                mmOutStream.close();
                 mmSocket.close();
+
             } catch (IOException e) { }
         }
     }
