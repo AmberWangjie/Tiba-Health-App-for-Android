@@ -45,7 +45,6 @@ public class BluetoothConnectionService {
     }
 
 
-
     /**
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted

@@ -180,7 +180,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
 
             Log.d(TAG, "onDestroy: called.");
-//            flag = 1;
+
             super.onDestroy();
             if (regestered1 ) {
                 unregisterReceiver(mBroadcastReceiver1);
@@ -192,12 +192,10 @@ public class BluetoothActivity extends AppCompatActivity {
                 unregisterReceiver(mBroadcastReceiver3);
             }
 
-                unregisterReceiver(mBroadcastReceiver4);
+        unregisterReceiver(mBroadcastReceiver4);
         if(mBluetoothConnection!= null) {
             mBluetoothConnection.stop();
         }
-
-
     }
 
     @Override
