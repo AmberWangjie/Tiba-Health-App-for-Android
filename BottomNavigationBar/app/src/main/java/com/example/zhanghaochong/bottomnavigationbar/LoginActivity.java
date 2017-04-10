@@ -2,6 +2,8 @@ package com.example.zhanghaochong.bottomnavigationbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,9 +34,12 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity{
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private boolean isLogin;
+    private String username;
+    private String password;
 
-    @Bind(R.id.input_email)
-    EditText _emailText;
+    @Bind(R.id.input_name)
+    EditText _usernameText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login)
     Button _loginButton;
@@ -74,18 +90,24 @@ public class LoginActivity extends AppCompatActivity{
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        username = _usernameText.getText().toString();
+        password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-
+        //Authentication through remote database
+        new Authentication().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/Login/");
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
+                        if(isLogin) {
+                            // On success call onLoginSuccess
+                            onLoginSuccess();
+                            progressDialog.dismiss();
+                        }
+                        else{
+                            // On failure call onLoginFailed
+                            onLoginFailed();
+                            progressDialog.dismiss();
+                        }
                     }
                 }, 3000);
     }
@@ -111,7 +133,8 @@ public class LoginActivity extends AppCompatActivity{
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        finish();
+        Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.MainUiActivity");
+        startActivity(intent);
     }
 
     public void onLoginFailed() {
@@ -123,14 +146,14 @@ public class LoginActivity extends AppCompatActivity{
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
+        String username = _usernameText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+        if (username.isEmpty()) {
+            _usernameText.setError("enter a valid username");
             valid = false;
         } else {
-            _emailText.setError(null);
+            _usernameText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
@@ -141,5 +164,76 @@ public class LoginActivity extends AppCompatActivity{
         }
 
         return valid;
+    }
+
+    public class Authentication extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("username", username)
+                        .appendQueryParameter("password", password);
+
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = connection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                return buffer.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals(new String("Success"))){
+                isLogin = true;
+            }
+            else{
+                isLogin = false;
+            }
+        }
     }
 }

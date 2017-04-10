@@ -2,6 +2,8 @@ package com.example.zhanghaochong.bottomnavigationbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +33,10 @@ import butterknife.ButterKnife;
 
 public class SignupActivity extends AppCompatActivity  {
     private static final String TAG = "SignupActivity";
+    private String username;
+    private String password;
+    private String email;
+    private boolean isSignup;
 
     @Bind(R.id.input_name)
     EditText _nameText;
@@ -74,23 +91,27 @@ public class SignupActivity extends AppCompatActivity  {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
+        username = _nameText.getText().toString();
         String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
+        email = _emailText.getText().toString();
         String mobile = _mobileText.getText().toString();
-        String password = _passwordText.getText().toString();
+        password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-
+        new register().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/signup/");
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
+                        if(isSignup) {
+                            // on success call onSignupSuccess
+                            onSignupSuccess();
+                            progressDialog.dismiss();
+                        }
+                        else{
+                            // onSignupFailed();
+                            onSignupFailed();
+                            progressDialog.dismiss();
+                        }
                     }
                 }, 3000);
     }
@@ -99,11 +120,12 @@ public class SignupActivity extends AppCompatActivity  {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
+        Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.MainUiActivity");
+        startActivity(intent);
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Username already exists", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -162,5 +184,79 @@ public class SignupActivity extends AppCompatActivity  {
         }
 
         return valid;
+    }
+
+    public class register extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("username", username)
+                        .appendQueryParameter("password1", password)
+                        .appendQueryParameter("password2", password)
+                        .appendQueryParameter("e_mail", email);
+
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = connection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                return buffer.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals(new String("Signup"))){
+                System.out.println(result);
+                isSignup = true;
+            }
+            else{
+                isSignup = false;
+            }
+        }
     }
 }

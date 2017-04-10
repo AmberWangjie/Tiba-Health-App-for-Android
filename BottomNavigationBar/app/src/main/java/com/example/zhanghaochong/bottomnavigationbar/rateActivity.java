@@ -25,9 +25,9 @@ public class RateActivity extends AppCompatActivity {
         subMit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent Homeintent = new Intent(RateActivity.this, MainActivity.class);
-                Homeintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(Homeintent);
+                Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.MainUiActivity");
+                startActivity(intent);
+                //finish();
             }
         });
 
