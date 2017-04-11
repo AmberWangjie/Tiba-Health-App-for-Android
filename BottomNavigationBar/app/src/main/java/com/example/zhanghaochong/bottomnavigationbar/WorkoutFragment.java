@@ -91,7 +91,7 @@ public class WorkoutFragment extends Fragment {
 
 
     private void retrieveData(){
-        new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercise/");
+        new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
     }
 
     public class JSONTask extends AsyncTask<String, String, ArrayList<Exercise>> {

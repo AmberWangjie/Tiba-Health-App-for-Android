@@ -77,6 +77,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainUiActivity">
+            <intent-filter>
+                <action android:name="com.example.zhanghaochong.bottomnavigationbar.MainUiActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

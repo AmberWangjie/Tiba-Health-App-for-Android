@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity{
         password = _passwordText.getText().toString();
 
         //Authentication through remote database
-        new Authentication().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/Login/");
+        new Authentication().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/login/");
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
