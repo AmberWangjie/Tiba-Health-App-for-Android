@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class RateActivity extends AppCompatActivity {
+public class rateActivity extends AppCompatActivity {
 
     Bundle bundle;
     Button subMit;
