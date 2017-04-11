@@ -36,9 +36,9 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
     //private static final int RESULT_OK = 1;
     private ImageView imageToUpload;
-    private Button uploadBtn;
+    // private Button uploadBtn;
     private Button editBtn;
-    private Button regBtn;
+    // private Button regBtn;
 
     private EditText name_text;
     private EditText phone_text;
@@ -47,12 +47,12 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     private EditText birth_text;
     private EditText pswd_text;
 
-    private Firebase mRef;
+    /*private Firebase mRef;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
     private ProgressDialog mProgress;
-
+*/
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,11 +74,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         User user = new User();
         imageToUpload = (ImageView) v.findViewById(R.id.accountImage);
 
-        uploadBtn = (Button) v.findViewById(R.id.uploadBtn);
+        //uploadBtn = (Button) v.findViewById(R.id.uploadBtn);
 
         editBtn = (Button) v.findViewById(R.id.info_update);
 
-        regBtn = (Button) v.findViewById(R.id.register);
+        //regBtn = (Button) v.findViewById(R.id.register);
 
         name_text = (EditText)v.findViewById(R.id.name_edit);
         phone_text = (EditText) v.findViewById(R.id.phone_edit);
@@ -87,11 +87,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         birth_text = (EditText) v.findViewById(R.id.birth_edit);
         pswd_text = (EditText) v.findViewById(R.id.pswd_edit);
 
-        user.setUsername("amber");
+       /* user.setUsername("amber");
         user.setPhone("123");
         user.setEmail("123@mail.com");
         user.setPt("barney");
-        user.setBirth("07/17/1994");
+        user.setBirth("07/17/1994");*/
 
         name_text.setText(user.getUsername());
         phone_text.setText(user.getPhone());
@@ -100,9 +100,9 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         birth_text.setText(user.getBirth());
 
         imageToUpload.setOnClickListener(this);
-        uploadBtn.setOnClickListener(this);
+        //uploadBtn.setOnClickListener(this);
         editBtn.setOnClickListener(this);
-        regBtn.setOnClickListener(this);
+        // regBtn.setOnClickListener(this);
 
         return v;
     }
@@ -123,8 +123,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                     zoomOut = true;
                 }*/
-                break;
-            case R.id.uploadBtn:
+                //break;
+                //case R.id.uploadBtn:
                 String choose = "Please choose a photo";
                 Toast.makeText(AccountFragment.this.getActivity(), choose, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -154,7 +154,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void startRegister(){
+    /*private void startRegister(){
         final String username = name_text.getText().toString().trim();
         String email = email_text.getText().toString().trim();
         String phone = phone_text.getText().toString().trim();
@@ -184,6 +184,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
                 }
             });
         }
-    }
+    }*/
 
 }

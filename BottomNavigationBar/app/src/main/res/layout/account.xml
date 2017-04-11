@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.zhanghaochong.bottomnavigationbar.MainActivity">
+    tools:context="com.example.zhanghaochong.bottomnavigationbar.MainActivity"
+    android:background="@drawable/accbck1">
 
 
     <ImageView
@@ -28,15 +29,15 @@
         android:background="@color/cardview_shadow_end_color" />
 
 
-    <Button
-        android:text="@string/user_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/info_update"
-        style="@android:style/Widget.Button.Inset"
-        android:layout_below="@+id/uploadBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!-- <Button
+         android:text="@string/user_update"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/info_update"
+         style="@android:style/Widget.Button.Transparent"
+         android:layout_below="@+id/uploadBtn"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentStart="true" />-->
 
     <EditText
         android:layout_width="match_parent"
@@ -44,20 +45,33 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/name_edit"
-        android:hint="Username"
-        android:layout_below="@+id/info_update"
+        android:hint="@string/user_name"
+        android:layout_below="@+id/accountImage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/primary_darker" />
 
-    <Button
-        android:text="@string/upload"
+    <!-- <Button
+         android:text="@string/upload"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/uploadBtn"
+         android:gravity="center"
+         style="@android:style/Widget.Button.Inset"
+         android:layout_below="@+id/accountImage"
+         android:layout_centerHorizontal="true" />-->
+    <!--<Button
+        android:text="Edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/uploadBtn"
-        android:gravity="center"
-        style="@android:style/Widget.Button.Inset"
+        android:id="@+id/info_update"
         android:layout_below="@+id/accountImage"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+-->
 
     <EditText
         android:layout_width="match_parent"
@@ -68,7 +82,8 @@
         android:hint="@string/user_pswd"
         android:layout_below="@+id/name_edit"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColorHint="@color/primary_darker" />
 
     <EditText
         android:layout_width="match_parent"
@@ -76,25 +91,13 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/email_edit"
-        android:hint="Email"
+        android:hint="@string/user_email"
         android:layout_below="@+id/pswd_edit"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phone_edit"
-        android:hint="Phone"
-        android:layout_below="@+id/email_edit"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textColorHint="@color/primary_darker" />
 
-    <Button
+    <!--<Button
         android:text="@string/user_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,7 +105,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/register"
-        style="@android:style/Widget.Button.Inset" />
+        style="@android:style/Widget.Button.Inset" />-->
+
 
     <EditText
         android:layout_width="match_parent"
@@ -110,13 +114,14 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/pt_edit"
-        android:hint="PT Name"
+        android:hint="@string/user_pt"
         android:layout_below="@+id/phone_edit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:fontFamily="sans-serif" />
+        android:fontFamily="sans-serif"
+        android:textColorHint="@color/primary_darker" />
 
     <EditText
         android:layout_width="match_parent"
@@ -130,7 +135,32 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="@string/user_birth"
-        android:fontFamily="sans-serif" />
+        android:fontFamily="sans-serif"
+        android:textColorHint="@color/primary_darker" />
+
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/info_update"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/phone_edit"
+        android:hint="@string/user_phone"
+        android:layout_below="@+id/email_edit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColorHint="@color/primary_darker" />
 
 
 </RelativeLayout>
