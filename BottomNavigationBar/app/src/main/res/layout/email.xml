@@ -8,21 +8,6 @@
     tools:context="com.example.zhanghaochong.bottomnavigationbar.MainActivity"
     android:background="@drawable/bck5">
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/linearLayout"
-        android:layout_alignStart="@+id/linearLayout"
-        android:layout_marginLeft="62dp"
-        android:layout_marginStart="62dp">
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/sendTo"
         android:layout_width="wrap_content"
@@ -36,88 +21,21 @@
         android:layout_marginTop="85dp"
         android:textAppearance="@style/BB_BottomBarItem_Fixed.Title"
         android:textSize="24sp"
-        android:fontFamily="sans-serif"
-        android:textColorLink="@color/colorPrimary"
         android:layout_below="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/black" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
-        android:weightSum="1">
-
-        <!-- <Button
-             android:text="@string/cancbtn"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginLeft="10dp"
-             android:layout_marginStart="10dp"
-             android:id="@+id/cancelButton"
-             android:layout_weight="10"
-             style="@android:style/Widget.Button" />
-
-         <Button
-             android:text="@string/sendbtn"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginRight="10dp"
-             android:layout_marginEnd="10dp"
-             android:id="@+id/sendButton"
-             android:layout_weight="10"
-             style="@android:style/Widget.Button" />-->
-
-        <!-- <View
-             android:layout_width="0dp"
-             android:layout_height="50dp"
-             android:layout_weight="8"/>-->
-
-        <!--<ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/backbutton"
-            android:layout_alignTop="@+id/cancelButton"
-            android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignStart="@+id/linearLayout2"
-            android:background="@null"
-            android:id="@+id/cancelButton"
-            android:layout_weight="0.25" />
--->
-
-    </LinearLayout>
-
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:srcCompat="@mipmap/send_button"
-        android:layout_marginBottom="101dp"
-        android:background="@null"
+        app:srcCompat="@drawable/email_icon"
+        android:layout_marginBottom="180dp"
+        android:background="@android:color/transparent"
         android:id="@+id/sendButton"
         android:layout_gravity="center_vertical|center_horizontal"
         android:scaleType="fitCenter"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:gravity="center_horizontal"
-        android:ems="10"
-        android:id="@+id/email_address"
-        android:layout_weight="1"
-        android:hint=" To:"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/sendTo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:singleLine="false"
-        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-        android:textColor="?attr/colorButtonNormal"
-        android:textColorHint="@color/colorPrimaryDark" />
--->
 
 </android.widget.RelativeLayout>
