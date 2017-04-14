@@ -3,6 +3,7 @@ package com.example.zhanghaochong.bottomnavigationbar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -37,24 +38,24 @@ public class EmailFragment extends Fragment {
                 onSendClick(view);
             }
         });
-        cancelButton.setOnClickListener(new View.OnClickListener(){
+        /*cancelButton.setOnClickListener(new View.OnClickListener(){
             // @Override
             public void onClick(View view){
                 onCancelClick(view);
             }
-        });
+        });*/
         return v;
     }
 
     private void initializeVars(View v){
-        cancelButton = (ImageButton) v.findViewById(R.id.cancelButton);
+        //cancelButton = (ImageButton) v.findViewById(R.id.cancelButton);
         sendButton = (ImageButton) v.findViewById(R.id.sendButton);
         //emailAddress = (EditText) v.findViewById(R.id.email_addr);
         //emailAddress = (EditText) v.findViewById(R.id.email_address);
 
     }
 
-    public void onCancelClick(View view) {
+    /*public void onCancelClick(View view) {
 
         String yourCancelResponse = "Cancel email";
         //emailContent.setText("");
@@ -65,7 +66,7 @@ public class EmailFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
 
     }
-
+*/
     public void onSendClick(View view) {
 
         String yourSendResponse = "Edit email";
@@ -90,7 +91,7 @@ public class EmailFragment extends Fragment {
                 startActivity(Intent.createChooser(email, "Send mail ..."));
                 //getActivity().finish();
                 Log.i("Finished sending email", "");
-                WorkoutFragment f = new WorkoutFragment();
+                EmailFragment f = new EmailFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
             }catch(android.content.ActivityNotFoundException ex){
               Toast.makeText(EmailFragment.this.getActivity(), "No email client installed!", Toast.LENGTH_SHORT).show();
