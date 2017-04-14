@@ -49,14 +49,7 @@ public class CareplanFragment extends ListFragment{
         return v;
     }
 
-    /*@Override
-    public void onListItemClick(ListView l, View v, int position, long id){
-        TextView editText = (TextView)v.findViewById(R.id.exerciseName);
-        String myPlan = String.format("%s\n%s", mTasks.get(position).getName(), mTasks.get(position).getDescription());
 
-        editText.setText(myPlan);
-    }
-*/
 
 
     private void getUpdates() {

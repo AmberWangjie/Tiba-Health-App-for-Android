@@ -35,7 +35,9 @@ public class SignupActivity extends AppCompatActivity  {
     private static final String TAG = "SignupActivity";
     private String username;
     private String password;
+    private String reEnterPassword;
     private String email;
+    private String mobile;
     private boolean isSignup;
 
     @Bind(R.id.input_name)
@@ -90,7 +92,6 @@ public class SignupActivity extends AppCompatActivity  {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
-
         username = _nameText.getText().toString();
         String address = _addressText.getText().toString();
         email = _emailText.getText().toString();

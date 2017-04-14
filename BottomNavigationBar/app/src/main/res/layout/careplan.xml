@@ -9,7 +9,8 @@
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
     android:paddingTop="20dp"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/bck5">
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:layout_width="120dp"
@@ -50,17 +51,6 @@
         android:textSize="15sp"
         android:layout_alignLeft="@+id/welcome" />
 
-    <TextView
-        android:id="@+id/textDescription"
-        android:text="Description of Plan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
     <ListView
         android:id="@+id/android:list"
         android:layout_width="match_parent"
@@ -77,6 +67,17 @@
         android:layout_below="@+id/textDescription"
         android:layout_centerHorizontal="true"
         android:id="@+id/textDesc" />
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:text="Description of Plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/donutProgress"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" />
 
 
 </RelativeLayout>
