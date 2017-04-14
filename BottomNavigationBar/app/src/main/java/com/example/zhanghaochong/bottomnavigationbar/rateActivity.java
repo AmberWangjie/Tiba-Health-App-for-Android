@@ -167,5 +167,4 @@ public class RateActivity extends AppCompatActivity {
             }
         });
     }
-
 }

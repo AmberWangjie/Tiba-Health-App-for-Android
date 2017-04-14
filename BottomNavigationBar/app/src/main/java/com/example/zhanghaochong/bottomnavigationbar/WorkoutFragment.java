@@ -81,8 +81,7 @@ public class WorkoutFragment extends Fragment {
         dp.setProgress(80);
 
         myView = (ListView)v.findViewById(android.R.id.list);
-
-        retrieveData();
+        new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
 
         onClickButtonListener(v);
 
@@ -90,105 +89,13 @@ public class WorkoutFragment extends Fragment {
     }
 
 
-    private void retrieveData(){
-        new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
-    }
-
     public class JSONTask extends AsyncTask<String, String, ArrayList<Exercise>> {
 
         @Override
-        protected ArrayList<Exercise> doInBackground(String... params){
-            HttpURLConnection connection = null;
-            BufferedReader reader = null;
+        protected ArrayList<Exercise> doInBackground(String... params) {
+            String finalJson = HttpConnection(params[0]);
 
-            try{
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("username", "hz132")
-                        .appendQueryParameter("password", "!Q@W#E$R");
-
-                String query = builder.build().getEncodedQuery();
-
-                OutputStream os = connection.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(query);
-                writer.flush();
-                writer.close();
-                os.close();
-
-                connection.connect();
-
-                InputStream stream = connection.getInputStream();
-
-                reader = new BufferedReader(new InputStreamReader(stream));
-
-                StringBuffer buffer = new StringBuffer();
-
-                String line = "";
-                while((line = reader.readLine()) != null){
-                    buffer.append(line);
-                }
-
-                buffer.insert(0, "{\"exercises\":");
-                buffer.append("}");
-                String finalJson = buffer.toString();
-
-                JSONObject parentObject = new JSONObject(finalJson);
-                JSONArray parentArray = parentObject.getJSONArray("exercises");
-                ArrayList<Exercise> newExercises = new ArrayList<>();
-
-                for(int i=0; i<parentArray.length(); i++) {
-                    JSONObject finalObject = parentArray.getJSONObject(i);
-                    JSONArray childArray = finalObject.getJSONArray("tasks");
-                    ArrayList<Task> newTasks = new ArrayList<>();
-                    Exercise e = new Exercise();
-                    for(int j=0; j<childArray.length(); j++){
-                        JSONObject childObject = childArray.getJSONObject(j);
-                        Task t = new Task();
-
-                        t.setName(childObject.getString("task_name"));
-                        t.setDescription(childObject.getString("task_description"));
-                        t.setTime(childObject.getString("task_duration"));
-                        t.setId("1");
-                        t.setAbstraction(childObject.getString("task_abstraction"));
-                        newTasks.add(t);
-                    }
-
-                    e.setExerciseName(finalObject.getString("exercise_name"));
-                    e.setExerciseDate(finalObject.getString("exercise_date"));
-                    e.setTaskNum(finalObject.getString("task_num"));
-                    e.setExerciseDuration(finalObject.getString("exercise_duration"));
-                    e.setExerciseBody(finalObject.getString("exercise_body"));
-                    e.setmTask(newTasks);
-                    newExercises.add(e);
-                }
-
-                return newExercises;
-
-            }catch (MalformedURLException e){
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } finally {
-                if(connection != null) {
-                    connection.disconnect();
-                }
-                try {
-                    if(reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
+            return JsonParser(finalJson);
         }
 
         @Override
@@ -198,7 +105,6 @@ public class WorkoutFragment extends Fragment {
             onExercisePass.setExercise(mExercises.get(0));
             mTasks = mExercises.get(0).getmTask();
             if(mTasks.size() > 0){
-                //ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mTasks);
                 adapter = new TaskAdapter(getActivity(),mTasks);
                 myView.setAdapter(adapter);
             }else{
@@ -236,5 +142,105 @@ public class WorkoutFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    public String HttpConnection(String Url) {
+        HttpURLConnection connection = null;
+        BufferedReader reader = null;
+
+        try {
+            URL url = new URL(Url);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+
+            Uri.Builder builder = new Uri.Builder()
+                    .appendQueryParameter("username", "hz132")
+                    .appendQueryParameter("password", "!Q@W#E$R");
+
+            String query = builder.build().getEncodedQuery();
+
+            OutputStream os = connection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+
+            connection.connect();
+
+            InputStream stream = connection.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
+
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line);
+            }
+            buffer.insert(0, "{\"exercises\":");
+            buffer.append("}");
+
+            return buffer.toString();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public ArrayList<Exercise> JsonParser(String finalJson){
+
+        try {
+            JSONObject parentObject = new JSONObject(finalJson);
+            JSONArray parentArray = parentObject.getJSONArray("exercises");
+            ArrayList<Exercise> newExercises = new ArrayList<>();
+
+            for (int i = 0; i < parentArray.length(); i++) {
+                JSONObject finalObject = parentArray.getJSONObject(i);
+                JSONArray childArray = finalObject.getJSONArray("tasks");
+                ArrayList<Task> newTasks = new ArrayList<>();
+                Exercise e = new Exercise();
+                for (int j = 0; j < childArray.length(); j++) {
+                    JSONObject childObject = childArray.getJSONObject(j);
+                    Task t = new Task();
+
+                    t.setName(childObject.getString("task_name"));
+                    t.setDescription(childObject.getString("task_description"));
+                    t.setTime(childObject.getString("task_duration"));
+                    t.setId("1");
+                    t.setAbstraction(childObject.getString("task_abstraction"));
+                    newTasks.add(t);
+                }
+
+                e.setExerciseName(finalObject.getString("exercise_name"));
+                e.setExerciseDate(finalObject.getString("exercise_date"));
+                e.setTaskNum(finalObject.getString("task_num"));
+                e.setExerciseDuration(finalObject.getString("exercise_duration"));
+                e.setExerciseBody(finalObject.getString("exercise_body"));
+                e.setmTask(newTasks);
+                newExercises.add(e);
+            }
+
+            return newExercises;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

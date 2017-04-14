@@ -59,4 +59,10 @@ so that the items stored there will be fetched without conncting to the server. 
 functional components they served.
 
 ## Get Started
-
+- First, to make the app UI display properly, make sure to run the code on an Android device, either an emulator or real mobile phone, with API 25 ideally since that was what we use when building the app)
+- Then, to login as the user, make sure to create a new account if you don't have one before and the username and password have to be unique and valid
+- After sucessfully login, you should be play with the app, the first page to be displayed is the summary of the careplan with all the exercise tasks to do and some statistic information about them, the user can choose to hit the button at the bottom or navigate to another page by the bottom navigation bar
+  1. If the "start workout" button is hit, all the exercises tasks for today should be done in a certain order(which was also part of the design of the care plan), first it will show the exercise name and its description;
+  2. There shall be a "go" button on each description page, once hit, the user shall be able to start the workout by hitting the start button, then the timer shall start counting the time until the end of this exercise unit, then the app shall automatically switch to next exercise unit in the task list, and the process shall be repeated;
+- After all the tasks for today being finished, the user will be able to choose the emoji button to rate for the working out experience;
+- The third option in the bottom navigation bar is for email feature, by hitting the envolop-like button, the app shall be redirected to the email server installed on the android device (You may also choose the email server if there are more one available), note that this necessary to use this feature, in addtion, you need also to sign in using a valid, registered email address on the email server you are going to use; after sending the email, it shall be redirected back to the app;
