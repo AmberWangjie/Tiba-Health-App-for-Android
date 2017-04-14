@@ -38,7 +38,6 @@ public class TrainActivity extends Activity {
         bundle = getIntent().getExtras();
         id = intent.getIntExtra(MESSAGE_ID, 0);
 
-
         if(bundle != null){
             mTasks = bundle.getParcelableArrayList(CONSTANT_TASK);
         }
@@ -72,8 +71,6 @@ public class TrainActivity extends Activity {
             }
         });
     }
-
-
 
     public class CounterClass extends CountDownTimer {
         public CounterClass (long InMillisSeconds, long TimeGap) {
