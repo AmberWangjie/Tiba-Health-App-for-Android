@@ -35,9 +35,7 @@ public class SignupActivity extends AppCompatActivity  {
     private static final String TAG = "SignupActivity";
     private String username;
     private String password;
-    private String reEnterPassword;
     private String email;
-    private String mobile;
     private boolean isSignup;
 
     @Bind(R.id.input_name)
@@ -93,6 +91,13 @@ public class SignupActivity extends AppCompatActivity  {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
+        username = _nameText.getText().toString();
+        String address = _addressText.getText().toString();
+        email = _emailText.getText().toString();
+        String mobile = _mobileText.getText().toString();
+        password = _passwordText.getText().toString();
+        String reEnterPassword = _reEnterPasswordText.getText().toString();
+
         new register().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/signup/");
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -125,88 +130,17 @@ public class SignupActivity extends AppCompatActivity  {
         _signupButton.setEnabled(true);
     }
 
-    public class register extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            HttpURLConnection connection = null;
-            BufferedReader reader = null;
-
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("username", username)
-                        .appendQueryParameter("password1", password)
-                        .appendQueryParameter("password2", reEnterPassword)
-                        .appendQueryParameter("e_mail", email);
-
-                String query = builder.build().getEncodedQuery();
-
-                OutputStream os = connection.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(query);
-                writer.flush();
-                writer.close();
-                os.close();
-
-                connection.connect();
-
-                InputStream stream = connection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(stream));
-                StringBuffer buffer = new StringBuffer();
-                String line = "";
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-                }
-
-                return buffer.toString();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
-                try {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if(result.equals(new String("Signup"))){
-                System.out.println(result);
-                isSignup = true;
-            }
-            else{
-                isSignup = false;
-            }
-        }
-    }
-
     public boolean validate() {
         boolean valid = true;
 
+        String name = _nameText.getText().toString();
         String address = _addressText.getText().toString();
-        username = _nameText.getText().toString();
-        email = _emailText.getText().toString();
-        mobile = _mobileText.getText().toString();
-        password = _passwordText.getText().toString();
-        reEnterPassword = _reEnterPasswordText.getText().toString();
+        String email = _emailText.getText().toString();
+        String mobile = _mobileText.getText().toString();
+        String password = _passwordText.getText().toString();
+        String reEnterPassword = _reEnterPasswordText.getText().toString();
 
-        if (username.isEmpty() || username.length() < 3) {
+        if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
             valid = false;
         } else {
@@ -250,5 +184,79 @@ public class SignupActivity extends AppCompatActivity  {
         }
 
         return valid;
+    }
+
+    public class register extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("username", username)
+                        .appendQueryParameter("password1", password)
+                        .appendQueryParameter("password2", password)
+                        .appendQueryParameter("e_mail", email);
+
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = connection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                return buffer.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals(new String("Signup"))){
+                System.out.println(result);
+                isSignup = true;
+            }
+            else{
+                isSignup = false;
+            }
+        }
     }
 }

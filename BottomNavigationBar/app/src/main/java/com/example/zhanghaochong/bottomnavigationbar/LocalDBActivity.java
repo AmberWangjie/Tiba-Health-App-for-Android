@@ -34,7 +34,6 @@ public class LocalDBActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_db);
         mContext = getApplicationContext();
-        Firebase.setAndroidContext(mContext);
 
         mRef = new Firebase("https://tibaapplication.firebaseio.com/");
 
