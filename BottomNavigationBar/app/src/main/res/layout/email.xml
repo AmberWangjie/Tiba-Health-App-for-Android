@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.zhanghaochong.bottomnavigationbar.MainActivity"
-    android:background="@drawable/bck5">
+    android:background="@drawable/emailbck">
 
 
     <LinearLayout
@@ -36,13 +36,13 @@
         android:layout_marginTop="85dp"
         android:textAppearance="@style/BB_BottomBarItem_Fixed.Title"
         android:textSize="24sp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="casual"
+        android:textStyle="normal|bold|italic"
         android:textColorLink="@color/colorPrimary"
         android:layout_below="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/bb_darkBackgroundColor"
-        android:textColorHint="@color/black" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -91,14 +91,13 @@
     </LinearLayout>
 
     <ImageButton
-        android:layout_width="60pt"
-        android:layout_height="60pt"
-        app:srcCompat="@mipmap/send_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/send_button"
+        android:layout_marginBottom="101dp"
         android:background="@null"
         android:id="@+id/sendButton"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:scaleType="fitCenter"
-        android:layout_marginBottom="99dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

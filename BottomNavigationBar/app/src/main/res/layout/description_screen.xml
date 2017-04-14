@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zhanghaochong.bottomnavigationbar.DescriptionActivity"
-    android:background="@drawable/bck5">
+    tools:context="com.example.zhanghaochong.bottomnavigationbar.DescriptionActivity">
 
 
     <TextView
@@ -18,10 +17,7 @@
         tools:layout_editor_absoluteY="16dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:textColorHint="@color/black" />
+        android:layout_marginTop="34dp" />
 
     <TextView
         android:id="@+id/textViewDes"
@@ -33,8 +29,7 @@
         tools:layout_editor_absoluteY="92dp"
         android:layout_below="@+id/textViewExe"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:textColorHint="@color/black" />
+        android:layout_marginTop="28dp" />
 
     <Button
         android:text="Go"

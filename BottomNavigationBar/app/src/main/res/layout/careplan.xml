@@ -9,8 +9,7 @@
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
     android:paddingTop="20dp"
-    android:weightSum="1"
-    android:background="@drawable/bck5">
+    android:weightSum="1">
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:layout_width="120dp"
@@ -31,8 +30,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/tibaLogo"
-        android:layout_alignEnd="@+id/tibaLogo"
-        android:textColorHint="@color/black" />
+        android:layout_alignEnd="@+id/tibaLogo" />
 
     <ImageView
         android:layout_width="90dp"
@@ -61,9 +59,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
-        android:textColor="@color/black" />
+        android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/android:list"
@@ -80,9 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textDescription"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textDesc"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black" />
+        android:id="@+id/textDesc" />
 
 
 </RelativeLayout>
