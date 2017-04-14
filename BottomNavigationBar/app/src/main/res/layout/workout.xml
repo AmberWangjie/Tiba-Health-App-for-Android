@@ -11,7 +11,8 @@
     android:paddingTop="20dp"
     android:layout_alignParentTop="true"
     android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true">
+    android:layout_alignParentLeft="true"
+    android:background="@drawable/bck5">
 
     <TextView
         android:id="@+id/summary"
@@ -20,7 +21,9 @@
         android:text="@string/Summary"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black" />
 
     <ImageView
         android:layout_width="70dp"
@@ -48,7 +51,9 @@
         android:text="10 min"
         android:layout_alignLeft="@+id/timer1"
         android:layout_marginLeft="13dp"
-        android:layout_below="@+id/timer1" />
+        android:layout_below="@+id/timer1"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/exercDescp"
@@ -56,7 +61,9 @@
         android:layout_height="wrap_content"
         android:text="3 exercises"
         android:layout_alignLeft="@+id/totoal_exercises"
-        android:layout_below="@+id/totoal_exercises" />
+        android:layout_below="@+id/totoal_exercises"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black" />
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:layout_width="wrap_content"
@@ -65,15 +72,6 @@
         android:layout_alignBottom="@+id/exercDescp"
         android:layout_toRightOf="@+id/exercDescp"
         android:layout_marginLeft="40dp"/>
-
-    <ListView
-        android:id="@+id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_below="@+id/exercDescp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
 
     <Button
         android:text="Start workout"
@@ -86,6 +84,14 @@
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
