@@ -26,7 +26,7 @@ public class TrainActivity extends Activity {
     Integer id;
     ImageView trainImage;
     TextView textViewTime;
-    int[] images = {R.drawable.a08, R.drawable.a04, R.drawable.a06};
+    int[] images = {R.drawable.a01, R.drawable.a02, R.drawable.a03, R.drawable.a04, R.drawable.a05, R.drawable.a06, R.drawable.a07, R.drawable.a08, R.drawable.a09, R.drawable.a10, R.drawable.a11, R.drawable.a12};
 
     public final static String MESSAGE_ID = "com.example.zhanghaochong.bottomnavigationbar.id";
     public final static String CONSTANT_TASK = "com.example.zhanghaochong.bottomnavigationbar.task";
@@ -38,11 +38,12 @@ public class TrainActivity extends Activity {
         bundle = getIntent().getExtras();
         id = intent.getIntExtra(MESSAGE_ID, 0);
 
-
         if(bundle != null){
             mTasks = bundle.getParcelableArrayList(CONSTANT_TASK);
         }
         String message = mTasks.get(id).getTime();
+        String task_id = mTasks.get(id).getId();
+        int taskId = Integer.parseInt(task_id);
 
         setContentView(R.layout.training_screen);
 
@@ -52,7 +53,7 @@ public class TrainActivity extends Activity {
         trainImage = (ImageView) findViewById(R.id.trainImage);
 
         long time = Integer.parseInt(message);
-        trainImage.setImageResource(images[id]);
+        trainImage.setImageResource(images[taskId - 1]);
         FormatConverter(time);
 
         final CounterClass timer = new CounterClass(time,1000);
@@ -67,13 +68,12 @@ public class TrainActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.RateActivity");
                 intent.putExtras(bundle);
+                timer.cancel();
 
                 startActivity(intent);
             }
         });
     }
-
-
 
     public class CounterClass extends CountDownTimer {
         public CounterClass (long InMillisSeconds, long TimeGap) {
@@ -109,5 +109,3 @@ public class TrainActivity extends Activity {
         textViewTime.setText(hms);
     }
 }
-
-

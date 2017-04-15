@@ -51,7 +51,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by zhanghaochong on 17/3/5.
@@ -64,7 +66,6 @@ public class WorkoutFragment extends Fragment {
     private Button startBtn;
     private ListView myView;
     private TaskAdapter adapter;
-    private DonutProgress dp;
     OnExercisePass onExercisePass;
 
     public final static String MESSAGE_ID = "com.example.zhanghaochong.bottomnavigationbar.id";
@@ -75,10 +76,6 @@ public class WorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //inflate the fragment layout file
         View v = inflater.inflate(R.layout.workout, container, false);
-
-        dp = (DonutProgress)v.findViewById(R.id.donutProgress);
-        //hard coded progress
-        dp.setProgress(80);
 
         myView = (ListView)v.findViewById(android.R.id.list);
         new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
@@ -102,7 +99,7 @@ public class WorkoutFragment extends Fragment {
         protected void onPostExecute(ArrayList<Exercise> result){
             super.onPostExecute(result);
             mExercises = result;
-            onExercisePass.setExercise(mExercises.get(0));
+            onExercisePass.setExercise(getExercise());
             mTasks = mExercises.get(0).getmTask();
             if(mTasks.size() > 0){
                 adapter = new TaskAdapter(getActivity(),mTasks);
@@ -111,18 +108,6 @@ public class WorkoutFragment extends Fragment {
                 Toast.makeText(getActivity(), "No data", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    public interface OnExercisePass{
-        public void setExercise(Exercise e);
-    }
-
-    @Override
-    public void onAttach(Activity activity){
-        super.onAttach(activity);
-        try{
-            onExercisePass = (OnExercisePass)activity;
-        }catch (Exception e){}
     }
 
     public void onClickButtonListener(View v) {
@@ -142,6 +127,20 @@ public class WorkoutFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    public Exercise getExercise(){
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
+        String formattedDate = sd.format(c.getTime());
+        System.out.println("Current time: "+ formattedDate);
+        int i = 0;
+        while(i < mExercises.size() && !formattedDate.equals(mExercises.get(i).getExerciseDate())){
+            i++;
+        }
+
+        return mExercises.get(i);
     }
 
     public String HttpConnection(String Url) {
@@ -221,7 +220,7 @@ public class WorkoutFragment extends Fragment {
                     t.setName(childObject.getString("task_name"));
                     t.setDescription(childObject.getString("task_description"));
                     t.setTime(childObject.getString("task_duration"));
-                    t.setId("1");
+                    t.setId(childObject.getString("task_id"));
                     t.setAbstraction(childObject.getString("task_abstraction"));
                     newTasks.add(t);
                 }
@@ -242,5 +241,17 @@ public class WorkoutFragment extends Fragment {
         }
 
         return null;
+    }
+
+    public interface OnExercisePass{
+        public void setExercise(Exercise e);
+    }
+
+    @Override
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+        try{
+            onExercisePass = (OnExercisePass)activity;
+        }catch (Exception e){}
     }
 }

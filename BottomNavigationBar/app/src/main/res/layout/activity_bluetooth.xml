@@ -20,14 +20,20 @@
             android:text="ON/OFF the Bluetooth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnONOFF" />
+            android:id="@+id/btnONOFF"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <Button
             android:text="Enable Discoverable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnEnableDisable_Discoverable"
-            android:id="@+id/btnDiscoverable_on_off" />
+            android:id="@+id/btnDiscoverable_on_off"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <TextView
             android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"
@@ -42,7 +48,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnFindUnpairedDevices"
             android:text="Discover"
-            android:onClick="btnDiscover" />
+            android:onClick="btnDiscover"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <ListView
             android:layout_marginTop="15dp"
@@ -57,7 +66,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnFindUnpairedDevices"
             android:id="@+id/btnStartConnection"
-            android:text="Start Connection"/>
+            android:text="Start Connection"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <TextView
             android:text="Now, you can choose one task and send it's analytical code."
@@ -89,7 +101,10 @@
             android:text="SEND"
             android:id="@+id/btnSend"
             android:layout_toRightOf="@+id/editText"
-            android:layout_below="@+id/lvNewDevices"/>
+            android:layout_below="@+id/lvNewDevices"
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"

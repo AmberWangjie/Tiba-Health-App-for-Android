@@ -35,13 +35,10 @@ public class DescriptionActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.description_screen);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
         id = intent.getIntExtra(MESSAGE_ID, 0);
 
         textViewExe = (TextView) findViewById(R.id.textViewExe);
         textViewDes = (TextView) findViewById(R.id.textViewDes);
-
         textViewExe.setText(mTasks.get(id).getName());
         textViewDes.setText(mTasks.get(id).getDescription());
 
@@ -55,7 +52,6 @@ public class DescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.TrainActivity");
-
                 intent.putExtras(bundle);
                 intent.putExtra(MESSAGE_ID, id);
 

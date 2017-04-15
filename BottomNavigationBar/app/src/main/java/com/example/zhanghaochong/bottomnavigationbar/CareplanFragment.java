@@ -37,20 +37,15 @@ public class CareplanFragment extends ListFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.careplan, container, false);
-
         myView = (ListView) v.findViewById(android.R.id.list);
 
         dp = (DonutProgress)v.findViewById(R.id.donutProgress);
-        //hard coded progress
         dp.setProgress(20);
 
         getUpdates();
 
         return v;
     }
-
-
-
 
     private void getUpdates() {
         mTasks.clear();

@@ -11,7 +11,6 @@
     tools:context="com.example.zhanghaochong.bottomnavigationbar.LocalDBActivity"
     android:background="@drawable/bck5">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -22,34 +21,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create database"
-            />
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/add_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add data"
-            />
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/update_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Update data"
-            />
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/delete_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete data"
-            />
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/query_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Query data"
-            />
+            android:background="@drawable/mybutton"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

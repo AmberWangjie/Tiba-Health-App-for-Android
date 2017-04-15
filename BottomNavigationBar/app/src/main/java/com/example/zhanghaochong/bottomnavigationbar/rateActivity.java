@@ -18,7 +18,6 @@ public class RateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
-        Intent intent = getIntent();
         bundle = getIntent().getExtras();
 
         subMit = (Button) findViewById(R.id.rate_finish);
@@ -27,7 +26,6 @@ public class RateActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.MainUiActivity");
                 startActivity(intent);
-                //finish();
             }
         });
 
