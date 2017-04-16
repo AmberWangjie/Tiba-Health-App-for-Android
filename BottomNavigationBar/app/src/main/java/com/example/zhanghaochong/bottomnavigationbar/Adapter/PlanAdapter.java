@@ -12,7 +12,10 @@ import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by zhanghaochong on 17/3/8.
@@ -38,6 +41,7 @@ public class PlanAdapter extends ArrayAdapter<Exercise> {
         TextView exercTime;
         TextView exercBody;
         TextView date;
+        TextView weekdate;
     }
 
     @Override
@@ -53,12 +57,19 @@ public class PlanAdapter extends ArrayAdapter<Exercise> {
         holder.exercTime = (TextView) convertView.findViewById(R.id.exercTime);
         holder.exercBody = (TextView) convertView.findViewById(R.id.exercBody);
         holder.date = (TextView) convertView.findViewById(R.id.date);
+        holder.weekdate = (TextView) convertView.findViewById(R.id.weekday);
 
         holder.exerciseName.setText(plans.get(position).getExerciseName());
         holder.taskNum.setText(plans.get(position).getTaskNum() + " tasks");
         holder.exercTime.setText(plans.get(position).getExerciseDuration());
         holder.exercBody.setText(plans.get(position).getExerciseBody());
         holder.date.setText(plans.get(position).getExerciseDate());
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
+
+        Calendar calendar = Calendar.getInstance();
+        weekDay = dayFormat.format(calendar.getTime());
+        holder.weekdate.setText(weekDay);
 
         return convertView;
     }

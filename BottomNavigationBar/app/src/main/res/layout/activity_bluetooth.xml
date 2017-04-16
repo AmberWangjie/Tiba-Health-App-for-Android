@@ -23,7 +23,7 @@
             android:id="@+id/btnONOFF"
             android:background="@drawable/mybutton"
             android:textColor="#ffffff"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:text="Enable Discoverable"
@@ -33,7 +33,8 @@
             android:id="@+id/btnDiscoverable_on_off"
             android:background="@drawable/mybutton"
             android:textColor="#ffffff"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"

@@ -88,7 +88,7 @@ public class TrainActivity extends Activity {
         public void onFinish() {
             textViewTime.setText("Done!");
             id += 1;
-            if(id >= 3){
+            if(id >= mTasks.size()){
                 Intent intent = new Intent("com.example.zhanghaochong.bottomnavigationbar.RateActivity");
                 intent.putExtras(bundle);
 

@@ -19,7 +19,6 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="16dp"
         android:layout_marginTop="85dp"
-        android:textAppearance="@style/BB_BottomBarItem_Fixed.Title"
         android:textSize="24sp"
         android:layout_below="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
@@ -27,15 +26,16 @@
         android:textColor="@color/black" />
 
     <ImageButton
+        android:id="@+id/sendButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/email_icon"
-        android:layout_marginBottom="180dp"
-        android:background="@android:color/transparent"
-        android:id="@+id/sendButton"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        app:srcCompat="@drawable/email_icon"
+        android:layout_below="@+id/sendTo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp" />
+
 
 </android.widget.RelativeLayout>

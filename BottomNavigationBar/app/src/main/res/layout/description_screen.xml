@@ -9,15 +9,17 @@
 
     <TextView
         android:id="@+id/textViewExe"
-        android:layout_width="143dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="squat"
+        android:textSize="30dp"
         android:gravity="center"
-
         tools:layout_editor_absoluteY="16dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+        android:layout_marginTop="34dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewDes"
@@ -25,11 +27,12 @@
         android:layout_height="297dp"
         android:text="Instruction goes here"
         android:gravity="center_horizontal"
-
         tools:layout_editor_absoluteY="92dp"
         android:layout_below="@+id/textViewExe"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        android:layout_marginTop="28dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 
     <Button
         android:text="Go"

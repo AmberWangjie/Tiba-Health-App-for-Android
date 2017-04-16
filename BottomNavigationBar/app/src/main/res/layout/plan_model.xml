@@ -38,6 +38,7 @@
         android:text="Strength and stability"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/date"
         android:layout_marginLeft="30dp"
         android:id="@+id/exerciseName"
         android:layout_toRightOf="@+id/weekday"
