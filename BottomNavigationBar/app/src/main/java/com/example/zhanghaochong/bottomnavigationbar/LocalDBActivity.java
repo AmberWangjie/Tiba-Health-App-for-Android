@@ -34,57 +34,57 @@ public class LocalDBActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_db);
         mContext = getApplicationContext();
-        Firebase.setAndroidContext(mContext);
-        mRef = new Firebase("https://tibaapplication.firebaseio.com/");
-
-        retrieveData();
-
-        Button createDatabase = (Button) findViewById(R.id.create_database);
-        createDatabase.setOnClickListener(new View.OnClickListener() {
-
-                                              @Override
-                                              public void onClick(View v) {
-                                                  Connector.getDatabase();
-                                              }
-                                          }
-        );
-
-        Button addData = (Button) findViewById(R.id.add_data);
-        addData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for(Task task:mTasks) {
-                    Exercise exercise = new Exercise();
-                    exercise.setName(task.getName());
-                    exercise.setDescription(task.getDescription());
-                    exercise.setTime(task.getTime());
-                    //exercise.setCode(task.getCode());
-                    exercise.save();
-                }
-            }
-        });
-
-        Button updateData = (Button) findViewById(R.id.update_data);
-        updateData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Exercise exercise = new Exercise();
-                exercise.setName("crunch");
-                exercise.setDescription("ccccc");
-                exercise.setTime("50");
-                exercise.setCode("1-9838677328-#^$%@45");
-                exercise.save();
-
-            }
-        });
-
-        Button deleteButton = (Button) findViewById(R.id.delete_data);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DataSupport.deleteAll(Exercise.class);
-            }
-        });
+//        Firebase.setAndroidContext(mContext);
+//        mRef = new Firebase("https://tibaapplication.firebaseio.com/");
+//
+//        retrieveData();
+//
+//        Button createDatabase = (Button) findViewById(R.id.create_database);
+//        createDatabase.setOnClickListener(new View.OnClickListener() {
+//
+//                                              @Override
+//                                              public void onClick(View v) {
+//                                                  Connector.getDatabase();
+//                                              }
+//                                          }
+//        );
+//
+//        Button addData = (Button) findViewById(R.id.add_data);
+//        addData.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                for(Task task:mTasks) {
+//                    Exercise exercise = new Exercise();
+//                    exercise.setName(task.getName());
+//                    exercise.setDescription(task.getDescription());
+//                    exercise.setTime(task.getTime());
+//                    //exercise.setCode(task.getCode());
+//                    exercise.save();
+//                }
+//            }
+//        });
+//
+//        Button updateData = (Button) findViewById(R.id.update_data);
+//        updateData.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Exercise exercise = new Exercise();
+//                exercise.setName("crunch");
+//                exercise.setDescription("ccccc");
+//                exercise.setTime("50");
+//                exercise.setCode("1-9838677328-#^$%@45");
+//                exercise.save();
+//
+//            }
+//        });
+//
+//        Button deleteButton = (Button) findViewById(R.id.delete_data);
+//        deleteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         Button queryButton = (Button) findViewById(R.id.query_data);
@@ -105,48 +105,48 @@ public class LocalDBActivity extends AppCompatActivity {
         });
     }
 
-    private void retrieveData(){
-        mRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                getUpdates(dataSnapshot);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                getUpdates(dataSnapshot);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-    }
-
-    private void getUpdates(DataSnapshot ds) {
-        mTasks.clear();
-
-        for(DataSnapshot data : ds.getChildren()) {
-            Task t = new Task();
-            t.setName(data.getValue(Task.class).getName());
-            t.setDescription(data.getValue(Task.class).getDescription());
-            t.setTime(data.getValue(Task.class).getTime());
-            t.setId(data.getValue(Task.class).getId());
-
-            mTasks.add(t);
-        }
-    }
+//    private void retrieveData(){
+//        mRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                getUpdates(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                getUpdates(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(FirebaseError firebaseError) {
+//
+//            }
+//        });
+//    }
+//
+//    private void getUpdates(DataSnapshot ds) {
+//        mTasks.clear();
+//
+//        for(DataSnapshot data : ds.getChildren()) {
+//            Task t = new Task();
+//            t.setName(data.getValue(Task.class).getName());
+//            t.setDescription(data.getValue(Task.class).getDescription());
+//            t.setTime(data.getValue(Task.class).getTime());
+//            t.setId(data.getValue(Task.class).getId());
+//
+//            mTasks.add(t);
+//        }
+//    }
 
 
 }
