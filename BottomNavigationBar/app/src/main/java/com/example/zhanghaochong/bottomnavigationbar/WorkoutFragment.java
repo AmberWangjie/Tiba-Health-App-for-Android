@@ -83,17 +83,7 @@ public class WorkoutFragment extends Fragment {
         new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
 
         //local database
-        Connector.getDatabase();
-        DataSupport.deleteAll(com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise.class);
 
-        for(Task task:mTasks) {
-            com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise exercise = new com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise();
-            exercise.setName(task.getName());
-            exercise.setDescription(task.getDescription());
-            exercise.setTime(task.getTime());
-            //exercise.setCode(task.getCode());
-            exercise.save();
-        }
 
         onClickButtonListener(v);
 
