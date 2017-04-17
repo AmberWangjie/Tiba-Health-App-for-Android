@@ -68,3 +68,9 @@ functional components they served.
   2. There shall be a "go" button on each description page, once hit, the user shall be able to start the workout by hitting the start button, then the timer shall start counting the time until the end of this exercise unit, then the app shall automatically switch to next exercise unit in the task list, and the process shall be repeated;
 - After all the tasks for today being finished, the user will be able to choose the emoji button to rate for the working out experience;
 - The third option in the bottom navigation bar is for email feature, by hitting the envolop-like button, the app shall be redirected to the email server installed on the android device (You may also choose the email server if there are more one available), note that this necessary to use this feature, in addtion, you need also to sign in using a valid, registered email address on the email server you are going to use; after sending the email, it shall be redirected back to the app;
+- The data will be automatically saved into the local database when it is retrieved form the remote database. Hitting the local database query button will show you part of data retrieved from local database.
+- Bluetooth setting up:
+   1. First, turn on the bluetooth option, then turn on the discoverability option, this will make your device discoverable to other devices for 600 seconds;
+   2. After being ready, hit discover button and chose the device you want to pair with;
+   3. Once get successfully paired, you may hit the connect button and send the message, note that all device has to install this application to work properly on this feature;
+   4. If either one of the applications exits the bluetooth interface, the connection will be lost, so the other one would also exit and end up the old connections and start with a new one.
