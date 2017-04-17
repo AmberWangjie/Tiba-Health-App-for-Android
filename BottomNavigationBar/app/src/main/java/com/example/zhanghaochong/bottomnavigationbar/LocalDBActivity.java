@@ -98,7 +98,7 @@ public class LocalDBActivity extends AppCompatActivity {
                     Log.d("LocalDBActivity", "task time is " + exercise.getTime());
                     Log.d("LocalDBActivity", "task code is " + exercise.getCode());
 
-                    Toast.makeText(mContext,"task name is " + exercise.getName()+"\n"+"task time is " + exercise.getTime(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext,"task name is " + exercise.getName()+"\n"+"task time is " + exercise.getTime()+"\n"+"task description is " +exercise.getDescription(),Toast.LENGTH_SHORT).show();
 
                 }
             }
