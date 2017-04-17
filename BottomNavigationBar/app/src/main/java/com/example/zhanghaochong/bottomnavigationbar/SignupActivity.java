@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.User;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -205,6 +207,10 @@ public class SignupActivity extends AppCompatActivity  {
         mobile = _mobileText.getText().toString();
         password = _passwordText.getText().toString();
         reEnterPassword = _reEnterPasswordText.getText().toString();
+
+        User.username = username;
+        User.password = password;
+
 
         if (username.isEmpty() || username.length() < 3) {
             _nameText.setError("at least 3 characters");

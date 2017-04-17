@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import com.example.zhanghaochong.bottomnavigationbar.Adapter.PlanAdapter;
+import com.example.zhanghaochong.bottomnavigationbar.Data.User;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -30,6 +31,7 @@ public class CareplanFragment extends ListFragment{
     private ArrayList<Task> mTasks = new ArrayList<>();
     ArrayList<Exercise> mExercise = new ArrayList<>();
     private ListView myView;
+    private TextView mUsername;
     private PlanAdapter adapter;
     private DonutProgress dp;
 
@@ -41,6 +43,8 @@ public class CareplanFragment extends ListFragment{
 
         dp = (DonutProgress)v.findViewById(R.id.donutProgress);
         dp.setProgress(20);
+        mUsername = (TextView) v.findViewById(R.id.userName);
+        mUsername.setText(User.username + "!");
 
         getUpdates();
 

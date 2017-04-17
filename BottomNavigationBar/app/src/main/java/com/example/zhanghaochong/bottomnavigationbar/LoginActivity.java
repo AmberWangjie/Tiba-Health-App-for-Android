@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zhanghaochong.bottomnavigationbar.Data.User;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -90,11 +92,8 @@ public class LoginActivity extends AppCompatActivity{
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        username = _usernameText.getText().toString();
-        password = _passwordText.getText().toString();
-
         //Authentication through remote database
-        new Authentication().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/login/");
+        new authentication().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/accounts/login/");
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -143,8 +142,10 @@ public class LoginActivity extends AppCompatActivity{
     public boolean validate() {
         boolean valid = true;
 
-        String username = _usernameText.getText().toString();
-        String password = _passwordText.getText().toString();
+        username = _usernameText.getText().toString();
+        password = _passwordText.getText().toString();
+        User.username = username;
+        User.password = password;
 
         if (username.isEmpty()) {
             _usernameText.setError("enter a valid username");
@@ -163,7 +164,7 @@ public class LoginActivity extends AppCompatActivity{
         return valid;
     }
 
-    public class Authentication extends AsyncTask<String, String, String> {
+    public class authentication extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {

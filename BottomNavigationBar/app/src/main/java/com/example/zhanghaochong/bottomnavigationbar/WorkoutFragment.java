@@ -8,13 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +19,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zhanghaochong.bottomnavigationbar.Adapter.PlanAdapter;
 import com.example.zhanghaochong.bottomnavigationbar.Adapter.TaskAdapter;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Exercise;
 import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-
-import com.firebase.client.authentication.Constants;
-import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +51,8 @@ public class WorkoutFragment extends Fragment {
     private ArrayList<Exercise> mExercises = new ArrayList<>();
     private Button startBtn;
     private ListView myView;
+    private TextView timerDescp;
+    private int totalTime = 0;
     private TaskAdapter adapter;
     OnExercisePass onExercisePass;
 
@@ -79,6 +67,7 @@ public class WorkoutFragment extends Fragment {
 
         myView = (ListView)v.findViewById(android.R.id.list);
         new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
+        System.out.println(mTasks.size());
 
         onClickButtonListener(v);
 
@@ -100,7 +89,12 @@ public class WorkoutFragment extends Fragment {
             super.onPostExecute(result);
             mExercises = result;
             onExercisePass.setExercise(getExercise());
-            mTasks = mExercises.get(0).getmTask();
+            mTasks = getExercise().getmTask();
+            timerDescp = (TextView) getActivity().findViewById(R.id.timerDescp);
+            for(int i=0; i < mTasks.size(); i++){
+                totalTime += Integer.parseInt(mTasks.get(i).getTime())/60000;
+            }
+            timerDescp.setText(totalTime + "min");
             if(mTasks.size() > 0){
                 adapter = new TaskAdapter(getActivity(),mTasks);
                 myView.setAdapter(adapter);

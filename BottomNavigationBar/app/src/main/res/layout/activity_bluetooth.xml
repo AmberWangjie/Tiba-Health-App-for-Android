@@ -37,7 +37,7 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
-            android:text="First, turn on the buletooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"
+            android:text="First, turn on the bluetooth, then turn on the discoverable. After that, hit discover and chose the device you wnat to pair. ONLY after a successul pair, you can hit connect and send message, note that all device has to install the same application to work properly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"

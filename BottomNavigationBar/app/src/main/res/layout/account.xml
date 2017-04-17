@@ -43,7 +43,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="date"
+        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/pswd_edit"
         android:hint="@string/user_pswd"
@@ -86,7 +86,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="datetime"
         android:ems="10"
         android:id="@+id/birth_edit"
         android:layout_below="@+id/pt_edit"
@@ -100,7 +100,7 @@
         android:textColorHint="@color/base" />
 
     <Button
-        android:text="Edit"
+        android:text="Update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/info_update"
