@@ -26,6 +26,8 @@ import com.example.zhanghaochong.bottomnavigationbar.Data.Task;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -68,6 +70,19 @@ public class WorkoutFragment extends Fragment {
         myView = (ListView)v.findViewById(android.R.id.list);
         new JSONTask().execute("http://colab-sbx-pvt-14.oit.duke.edu:8000/exercises/");
         System.out.println(mTasks.size());
+
+        //local database
+        Connector.getDatabase();
+        DataSupport.deleteAll(com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise.class);
+
+        for(Task task:mTasks) {
+            com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise exercise = new com.example.zhanghaochong.bottomnavigationbar.LocalData.Exercise();
+            exercise.setName(task.getName());
+            exercise.setDescription(task.getDescription());
+            exercise.setTime(task.getTime());
+            //exercise.setCode(task.getCode());
+            exercise.save();
+        }
 
         onClickButtonListener(v);
 
