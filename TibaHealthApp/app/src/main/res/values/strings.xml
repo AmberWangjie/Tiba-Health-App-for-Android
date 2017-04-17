@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BottomNavigationBar</string>
+    <string name="app_name">TibaHealthApp</string>
     <string name="title_activity_description">DescriptionActivity</string>
     <string name="user_name">User Name:</string>
     <string name="user_input">Information</string>
