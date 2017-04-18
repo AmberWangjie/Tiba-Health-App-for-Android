@@ -173,7 +173,12 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            jsonParser(result);
+            if(result != null) {
+                jsonParser(result);
+            }
+            else{
+                Toast.makeText(getActivity().getBaseContext(), "No user information available", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

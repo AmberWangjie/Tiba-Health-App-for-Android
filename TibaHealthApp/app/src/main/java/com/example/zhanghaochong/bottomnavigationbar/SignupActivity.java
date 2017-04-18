@@ -40,11 +40,12 @@ public class SignupActivity extends AppCompatActivity  {
     private String reEnterPassword;
     private String email;
     private String mobile;
+    private String birthday;
     private boolean isSignup;
 
     @Bind(R.id.input_name)
     EditText _nameText;
-    @Bind(R.id.input_address) EditText _addressText;
+    @Bind(R.id.input_birthday) EditText _birthdayText;
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_mobile) EditText _mobileText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -143,6 +144,8 @@ public class SignupActivity extends AppCompatActivity  {
                         .appendQueryParameter("username", username)
                         .appendQueryParameter("password1", password)
                         .appendQueryParameter("password2", reEnterPassword)
+                        .appendQueryParameter("mobile", mobile)
+                        .appendQueryParameter("birthday", birthday)
                         .appendQueryParameter("e_mail", email);
 
                 String query = builder.build().getEncodedQuery();
@@ -201,7 +204,7 @@ public class SignupActivity extends AppCompatActivity  {
     public boolean validate() {
         boolean valid = true;
 
-        String address = _addressText.getText().toString();
+        birthday = _birthdayText.getText().toString();
         username = _nameText.getText().toString();
         email = _emailText.getText().toString();
         mobile = _mobileText.getText().toString();
@@ -219,11 +222,11 @@ public class SignupActivity extends AppCompatActivity  {
             _nameText.setError(null);
         }
 
-        if (address.isEmpty()) {
-            _addressText.setError("Enter Valid Address");
+        if (birthday.isEmpty()) {
+            _birthdayText.setError("Enter Valid Birthdate");
             valid = false;
         } else {
-            _addressText.setError(null);
+            _birthdayText.setError(null);
         }
 
 
