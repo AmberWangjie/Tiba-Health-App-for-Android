@@ -28,7 +28,7 @@ belonging to this part are as following:
     3. EmailFragment.java
     4. DescriptionActivity.java
     5. WorkoutFragment.java
-    6. rateActivity.java
+    6. RateActivity.java
     7. LoginActivity.java
     8. TrainActivity.java
     
