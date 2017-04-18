@@ -38,6 +38,7 @@ job. The specific java files include:
      1. BluetoothActivity.java
      2. BluetoothConnectionServices.java
      3. DeviceListAdapter.java
+     4. Recycler.MyAdapterBTListView.java
      
 
   - The backend implementation is basically focused on the  network server and database server, which will be built connection
@@ -46,6 +47,9 @@ so that the items stored there will be fetched without conncting to the server. 
      1. SettingFragment.java
      2. LocalDBActivity.java
      3. SignupActivity.java
+     4. LocalData.Exercise.java
+     5. LocalData.User.java
+     6. assets.litepal.xml
 
 
 
@@ -68,7 +72,7 @@ functional components they served.
   2. There shall be a "go" button on each description page, once hit, the user shall be able to start the workout by hitting the start button, then the timer shall start counting the time until the end of this exercise unit, then the app shall automatically switch to next exercise unit in the task list, and the process shall be repeated;
 - After all the tasks for today being finished, the user will be able to choose the emoji button to rate for the working out experience;
 - The third option in the bottom navigation bar is for email feature, by hitting the envolop-like button, the app shall be redirected to the email server installed on the android device (You may also choose the email server if there are more one available), note that this necessary to use this feature, in addtion, you need also to sign in using a valid, registered email address on the email server you are going to use; after sending the email, it shall be redirected back to the app;
-- The data will be automatically saved into the local database when it is retrieved form the remote database. Hitting the local database query button will show you part of data retrieved from local database.
+- The local database data will be automatically updated after user hit "start exercise" button. Hitting the local database query button will show you part of data retrieved from local database.
 - Bluetooth setting up:
    1. First, turn on the bluetooth option, then turn on the discoverability option, this will make your device discoverable to other devices for 600 seconds;
    2. After being ready, hit discover button and chose the device you want to pair with;
